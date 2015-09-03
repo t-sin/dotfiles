@@ -1,0 +1,17 @@
+## configurations for OS X
+
+export PS1='\u@\h:\w $ '
+
+# aliases
+alias ll='ls -al'
+alias la='ls -a'
+
+# path
+PATH=$PATH:/usr/local/bin
+PATH=$PATH:~/bin
+
+# Common Lisp
+PATH=$PATH:~/.roswell/bin
+
+
+export PATH

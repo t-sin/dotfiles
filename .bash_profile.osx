@@ -3,8 +3,9 @@
 export PS1='\u@\h:\w $ '
 
 # aliases
-alias ll='ls -al'
-alias la='ls -a'
+alias ls='ls -G'
+alias ll='ls -alG'
+alias la='ls -aG'
 alias emacs='open -a /Applications/Emacs.app'
 
 # path

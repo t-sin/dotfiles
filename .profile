@@ -15,7 +15,8 @@ PATH=$PATH:$HOME/.cim/bin
 
 ## golang
 PATH=$PATH:$OPT/go/bin
-GOPATH=$OPT/gopath/bin
+GOPATH=$OPT/gopath
+PATH=$PATH:$GOPATH/bin
 
 ## Java
 export JAVA_HOME=/usr/local/jdk1.8.0_25

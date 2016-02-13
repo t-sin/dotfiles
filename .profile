@@ -15,7 +15,7 @@ PATH=$PATH:$HOME/.cim/bin
 
 ## golang
 PATH=$PATH:$OPT/go/bin
-GOPATH=$OPT/gopath
+export GOPATH=$OPT/gopath
 PATH=$PATH:$GOPATH/bin
 
 ## Java

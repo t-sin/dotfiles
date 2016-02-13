@@ -25,5 +25,9 @@ PATH=$PATH:$JAVA_HOME/bin
 #PATH=$PATH:$OPT/android-sdk-linux/tools
 #PATH=$PATH:$OPT/android-sdk-linux/platform-tools
 
-
 export PATH
+
+
+if [ -f "$HOME/.bashrc" ]; then
+    source "$HOME/.bashrc"
+fi

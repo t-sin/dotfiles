@@ -1,20 +1,29 @@
 #!/bin/bash
 
+OPT=$HOME/opt
 
-### paths
+# paths
 
 PATH=$PATH:$HOME/bin
+
+## texlive
+PATH=$PATH:$OPT/usr/local/texlive/2013/bin/x86_64-linux
 
 ## Common Lisp
 PATH=$PATH:$HOME/.roswell/bin
 PATH=$PATH:$HOME/.cim/bin
 
-## JDK
-JAVA_HOME=$HOME/opt/jdk_1.8.0_60
+## golang
+PATH=$PATH:$OPT/go/bin
+GOPATH=$OPT/gopath/bin
+
+## Java
+export JAVA_HOME=/usr/local/jdk1.8.0_25
 PATH=$PATH:$JAVA_HOME/bin
 
-## node.js
-PATH=$PATH:$HOME/npm-global/bin
+# Android SDK
+#PATH=$PATH:$OPT/android-sdk-linux/tools
+#PATH=$PATH:$OPT/android-sdk-linux/platform-tools
+
 
 export PATH
-

@@ -14,7 +14,8 @@ PATH=$PATH:$HOME/.roswell/bin
 PATH=$PATH:$HOME/.cim/bin
 
 ## golang
-PATH=$PATH:$OPT/go/bin
+export GOROOT=$OPT/go
+PATH=$PATH:$GOROOT/bin
 export GOPATH=$OPT/gopath
 PATH=$PATH:$GOPATH/bin
 

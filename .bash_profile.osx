@@ -6,7 +6,7 @@ export PS1='\u@\h:\w $ '
 alias ls='ls -G'
 alias ll='ls -alG'
 alias la='ls -aG'
-alias emacs='open -a /Applications/Emacs.app'
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
 # path
 PATH=$PATH:/usr/local/bin

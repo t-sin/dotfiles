@@ -11,9 +11,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Add or remove your Bundles here:
 NeoBundle 'tpope/vim-fugitive'
 
-" my bundles
-NeoBundle 'drmikehenry/vim-fontsize.vim'
-
 
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tomasr/molokai'
@@ -49,8 +46,17 @@ set expandtab
 set shiftwidth=4
 
 "" visual
-set guifont=Ricty\ 13.5
-set guifontwide=Ricty\ 13.5
-set columns=95
-set lines=40
+if has("gui")
+    set columns=110
+    set lines=45
+endif
+
 colorscheme molokai
+
+if has("unix")
+    set guifont=Ricty\ 13.5
+    set guifontwide=Ricty\ 13.5
+elseif has("mac")
+    set guifont=Ricty\ Regular:h14
+    set guifontwide=Ricty\ Regular:h14
+endif

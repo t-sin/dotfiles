@@ -33,6 +33,7 @@ function available_emacs () {
 
 function install_dependent_packages () {
     NO_GUI=$1
+
     # https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian#toc4
     if [ -n "$NO_GUI" ]; then
 	echo install dependent packages without gui
@@ -48,6 +49,7 @@ function retrieve_emacs_source () {
     echo retrieving "$1" source...
     EMACS_TARBALL=$(echo $1 | xargs printf '%s.tar.gz')
     EMACS_URL=$(printf "$EMACS_BASE_URL/%s" "$EMACS_TARBALL")
+
     mkdir -p $TMP_DIR
     pushd $TMP_DIR
     if [ ! -d "$1" ]; then
@@ -64,6 +66,7 @@ function build_and_install_emacs () {
     echo build/install emacs...
     EMACS_SOURCE_PATH="$TMP_DIR/$1"
     NO_GUI=$2
+
     pushd "$EMACS_SOURCE_PATH"
     if [ -n "$NO_GUI" ]; then
         ./configure \
@@ -92,7 +95,7 @@ elif [ $# -ge 2 ] && [ "$1" = 'install' ]; then
     if [[ "$2" =~ ^$EMACS_VERSION_REGEX$ ]]; then
         EMACS_VERSION=$2
         echo "install " $2
-        
+
         install_dependent_packages "$NO_GUI"
         if [ $? -gt 0 ]; then
             exit 1

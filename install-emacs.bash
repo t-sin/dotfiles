@@ -7,14 +7,18 @@ EMACS_VERSION_REGEX=emacs-[0-9]{2}\.[0-9][a-z]?
 function usage () {
     cat <<EOF
 get-emacs - bring emacs into your hand
-usage: get-emacs [command] [params...]
+usage: get-emacs <command> [params...]
 !IMPORTANT! run as root to install emacs and dependencies
+
+commands:
 
          list:
            list available emacs versions.
 
-         install [version]:
+         install <version> [nogui]:
            install emacs of specified version and its dependent packages.
+           when supplied \`nogui\` (or non-empty string), build emacs
+           without GUI.
 
 EOF
     exit 1
@@ -28,9 +32,15 @@ function available_emacs () {
 }
 
 function install_dependent_packages () {
-    echo install dependent packages
+    NO_GUI=$1
     # https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian#toc4
-    sudo apt install autoconf automake libtool texinfo build-essential xorg-dev libgtk2.0-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng12-dev librsvg2-dev libotf-dev libgnutls-dev libxml2-dev checkinstall
+    if [ -n "$NO_GUI" ]; then
+	echo install dependent packages without gui
+        sudo apt install autoconf automake libtool texinfo build-essential libncurses5-dev libdbus-1-dev libm17n-dev libgnutls-dev libxml2-dev checkinstall
+    else
+	echo install dependent packages with gui
+        sudo apt install autoconf automake libtool texinfo build-essential xorg-dev libgtk2.0-dev libjpeg-dev libncurses5-dev libdbus-1-dev libgif-dev libtiff-dev libm17n-dev libpng12-dev librsvg2-dev libotf-dev libgnutls-dev libxml2-dev checkinstall
+    fi
     return 0
 }
 
@@ -53,8 +63,22 @@ function retrieve_emacs_source () {
 function build_and_install_emacs () {
     echo build/install emacs...
     EMACS_SOURCE_PATH="$TMP_DIR/$1"
+    NO_GUI=$2
     pushd "$EMACS_SOURCE_PATH"
-    ./configure
+    if [ -n "$NO_GUI" ]; then
+        ./configure \
+            --without-x \
+            --with-x-toolkit=no \
+            --without-xpm \
+            --without-jpeg \
+            --without-tiff \
+            --without-gif \
+            --without-png \
+            --without-rsvg \
+            --without-libotf
+    else
+        ./configure
+    fi
     make
     sudo checkinstall -y
     popd
@@ -63,12 +87,13 @@ function build_and_install_emacs () {
 
 if [ $# -eq 1 ] && [ "$1" = 'list' ]; then
     available_emacs
-elif [ $# -eq 2 ] && [ "$1" = 'install' ]; then
+elif [ $# -ge 2 ] && [ "$1" = 'install' ]; then
+    NO_GUI=$3
     if [[ "$2" =~ ^$EMACS_VERSION_REGEX$ ]]; then
         EMACS_VERSION=$2
         echo "install " $2
         
-        install_dependent_packages
+        install_dependent_packages "$NO_GUI"
         if [ $? -gt 0 ]; then
             exit 1
         fi
@@ -76,7 +101,7 @@ elif [ $# -eq 2 ] && [ "$1" = 'install' ]; then
         if [ $? -gt 0 ]; then
             exit 1
         fi
-        build_and_install_emacs $EMACS_VERSION
+        build_and_install_emacs $EMACS_VERSION "$NO_GUI"
         exit 0
     else
         usage

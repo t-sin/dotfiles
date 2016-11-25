@@ -1,6 +1,6 @@
 #!/bin/bash
 
-EMACS_BASE_URL=http://public.p-knowledge.co.jp/gnu-mirror/emacs
+EMACS_BASE_URL=https://ftp.gnu.org/gnu/emacs
 TMP_DIR=$HOME/tmp
 EMACS_VERSION_REGEX=emacs-[0-9]{2}\.[0-9][a-z]?
 

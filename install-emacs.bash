@@ -64,6 +64,7 @@ function retrieve_emacs_source () {
 
 function build_and_install_emacs () {
     echo build/install emacs...
+    EMACS_VERSION="$1"
     EMACS_SOURCE_PATH="$TMP_DIR/$1"
     NO_GUI=$2
 
@@ -83,7 +84,7 @@ function build_and_install_emacs () {
         ./configure
     fi
     make
-    sudo checkinstall -y
+    sudo checkinstall -y --pkgname="$EMACS_VERSION"
     popd
 }
 

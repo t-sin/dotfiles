@@ -2,6 +2,11 @@
 
 OPT=$HOME/opt
 
+# emacs
+alias emacsc='emacsclient'
+EDITOR=emacsclient
+export EDITOR
+
 # paths
 
 PATH=$PATH:$HOME/bin

@@ -30,13 +30,9 @@ NeoBundleCheck
 
 
 """" my configurations
-
-set guioptions-=T
-set guioptions-=r
 set laststatus=2
 
 " auto select into clipboard
-:set guioptions+=a  " when GUI
 :set clipboard+=autoselect  " unless GUI
 
 "" indent with spaces
@@ -44,19 +40,3 @@ set tabstop=4
 set autoindent
 set expandtab
 set shiftwidth=4
-
-"" visual
-if has("gui")
-    set columns=110
-    set lines=45
-endif
-
-colorscheme molokai
-
-if has("unix")
-    set guifont=Ricty\ 13.5
-    set guifontwide=Ricty\ 13.5
-elseif has("mac")
-    set guifont=Ricty\ Regular:h14
-    set guifontwide=Ricty\ Regular:h14
-endif

@@ -7,15 +7,15 @@ EMACS_VERSION_REGEX=emacs-[0-9]{2}\.[0-9][a-z]?
 function usage () {
     cat <<EOF
 get-emacs - bring emacs into your hand
-usage: get-emacs <command> [params...]
+usage: install-emacs <COMMAND> [PARAMS...]
+
 !IMPORTANT! run as root to install emacs and dependencies
 
-commands:
+COMMANDS:
 
-         list:
-           list available emacs versions.
+  list     list available emacs versions.
 
-         install <version> [nogui]:
+  install <version> [nogui]
            install emacs of specified version and its dependent packages.
            when supplied \`nogui\` (or non-empty string), build emacs
            without GUI.

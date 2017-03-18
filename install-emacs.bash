@@ -4,7 +4,7 @@ EMACS_BASE_URL=https://ftp.gnu.org/gnu/emacs
 TMP_DIR=$HOME/tmp
 EMACS_VERSION_REGEX=emacs-[0-9]{2}\.[0-9][a-z]?
 
-function usage () {
+usage () {
     cat <<EOF
 get-emacs - bring emacs into your hand
 usage: install-emacs <COMMAND> [PARAMS...]
@@ -24,14 +24,14 @@ EOF
     exit 1
 }
 
-function available_emacs () {
+available_emacs () {
     curl -L $EMACS_BASE_URL 2>/dev/null \
         | sed -E -e 's/.*href="([^"]*)".*/\1/' \
         | sed -nE -e "s/^($EMACS_VERSION_REGEX)\.tar\.gz.*/\1/p" \
         | sort | uniq
 }
 
-function install_dependent_packages () {
+install_dependent_packages () {
     NO_GUI=$1
 
     # https://www.emacswiki.org/emacs/EmacsSnapshotAndDebian#toc4
@@ -45,7 +45,7 @@ function install_dependent_packages () {
     return 0
 }
 
-function retrieve_emacs_source () {
+retrieve_emacs_source () {
     echo retrieving "$1" source...
     EMACS_TARBALL=$(echo $1 | xargs printf '%s.tar.gz')
     EMACS_URL=$(printf "$EMACS_BASE_URL/%s" "$EMACS_TARBALL")
@@ -62,7 +62,7 @@ function retrieve_emacs_source () {
     popd
 }
 
-function build_and_install_emacs () {
+build_and_install_emacs () {
     echo build/install emacs...
     EMACS_VERSION="$1"
     EMACS_SOURCE_PATH="$TMP_DIR/$1"

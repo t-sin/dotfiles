@@ -1,8 +1,11 @@
 #!/bin/bash
 
-EMACS_BASE_URL=https://ftp.gnu.org/gnu/emacs
+EMACS_SAVANNAH_BASE=https://git.savannah.gnu.org
+EMACS_SAVANNAH_TAGS=cgit/emacs.git/refs/tags
+EMACS_SAVANNAH_SNAPSHOT=cgit/emacs.git/snapshot
+EMACS_VERSION_REGEX=[0-9]{2}\.[0-9][0-9a-z.-]+
+
 TMP_DIR=$HOME/tmp
-EMACS_VERSION_REGEX=emacs-[0-9]{2}\.[0-9][a-z]?
 
 usage () {
     cat <<EOF
@@ -25,10 +28,12 @@ EOF
 }
 
 available_emacs () {
-    curl -L $EMACS_BASE_URL 2>/dev/null \
-        | sed -E -e 's/.*href="([^"]*)".*/\1/' \
-        | sed -nE -e "s/^($EMACS_VERSION_REGEX)\.tar\.gz.*/\1/p" \
-        | sort | uniq
+    curl -sL $EMACS_SAVANNAH_BASE/$EMACS_SAVANNAH_TAGS \
+        | grep .tar.gz \
+        | egrep "$EMACS_SAVANNAH_SNAPSHOT/" \
+        | sed -En -e "s|.+$EMACS_SAVANNAH_SNAPSHOT/(emacs-$EMACS_VERSION_REGEX)\.tar\.gz'.+|\1|p" \
+        | sort
+    echo 'master'
 }
 
 install_dependent_packages () {
@@ -45,18 +50,28 @@ install_dependent_packages () {
     return 0
 }
 
+emacs_name () {
+    if [ $1 == master ]; then
+        echo emacs-master
+    else
+        echo $1
+    fi
+}
+
 retrieve_emacs_source () {
-    echo retrieving "$1" source...
-    EMACS_TARBALL=$(echo $1 | xargs printf '%s.tar.gz')
-    EMACS_URL=$(printf "$EMACS_BASE_URL/%s" "$EMACS_TARBALL")
+    EMACS_NAME=$(emacs_name "$1")
+    EMACS_URL=$(printf "$EMACS_SAVANNAH_BASE/$EMACS_SAVANNAH_SNAPSHOT/%s.tar.gz" "$1")
+    echo retrieving $EMACS_NAME source...
 
     mkdir -p $TMP_DIR
     pushd $TMP_DIR
-    if [ ! -d "$1" ]; then
-        curl -L $EMACS_URL > "$EMACS_TARBALL"
-        if [ -e "$EMACS_TARBALL" ]; then
-            cat "$EMACS_TARBALL" | gzip -d | tar xf -
-            rm "$EMACS_TARBALL"
+    if [ ! -d $EMACS_NAME ]; then
+        curl -L $EMACS_URL > "$EMACS_NAME.tar.gz"
+        if [ -e "$EMACS_NAME.tar.gz" ]; then
+            mkdir $EMACS_NAME
+            cat "$EMACS_NAME.tar.gz" | gzip -d \
+                | tar -xf - --directory=$EMACS_NAME --strip-components=1
+            rm "$EMACS_NAME.tar.gz"
         fi
     fi
     popd
@@ -64,9 +79,11 @@ retrieve_emacs_source () {
 
 build_and_install_emacs () {
     echo build/install emacs...
-    EMACS_VERSION="$1"
-    EMACS_SOURCE_PATH="$TMP_DIR/$1"
+    EMACS_NAME=$(emacs_name "$1")
+    EMACS_SOURCE_PATH="$TMP_DIR/$EMACS_NAME"
+    EMACS_VERSION=$(cat $EMACS_SOURCE_PATH/configure.* | sed -nE -e 's/AC_INIT\(.+macs, (.+), .+/\1/p')
     NO_GUI=$2
+    echo version $EMACS_VERSION
 
     pushd "$EMACS_SOURCE_PATH"
     if [ -n "$NO_GUI" ]; then
@@ -84,7 +101,7 @@ build_and_install_emacs () {
         ./configure
     fi
     make
-    sudo checkinstall -y --pkgname="$EMACS_VERSION"
+    sudo checkinstall -y --pkgname=$EMACS_NAME --pkgversion=$EMACS_VERSION
     popd
 }
 
@@ -93,7 +110,7 @@ if [ $# -eq 1 ] && [ "$1" = 'list' ]; then
     available_emacs
 elif [ $# -ge 2 ] && [ "$1" = 'install' ]; then
     NO_GUI=$3
-    if [[ "$2" =~ ^$EMACS_VERSION_REGEX$ ]]; then
+    if [[ "$2" =~ ^(emacs-$EMACS_VERSION_REGEX|master)$ ]]; then
         EMACS_VERSION=$2
         echo "install " $2
 

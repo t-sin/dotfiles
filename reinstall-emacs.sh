@@ -1,5 +1,16 @@
 #!/bin/bash
 
+if [ $# -lt 1 ]; then
+   cat <<EOF
+   reinstall-emacs.sh - replace remacs newer
+   usage: reinstall-emacs VERSION
+
+   VERSIONs can be listed by install-emacs.sh
+
+EOF
+   exit
+fi
+
 LOG_FILE=/var/log/update-emacs.log
 VERSION=$1
 

@@ -38,3 +38,10 @@ export PATH
 if [ -f "$HOME/.bashrc" ]; then
     source "$HOME/.bashrc"
 fi
+
+
+## for me
+
+wihi () {
+    sed 's/t/ﾋ/g;s/wi/ｳｨ/g;s/er/ﾋｰ/g'
+}

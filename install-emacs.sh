@@ -5,7 +5,12 @@ EMACS_SAVANNAH_TAGS=cgit/emacs.git/refs/tags
 EMACS_SAVANNAH_SNAPSHOT=cgit/emacs.git/snapshot
 EMACS_VERSION_REGEX=[0-9]{2}\.[0-9][0-9a-z.-]+
 
-TMP_DIR=$HOME/tmp
+if [ -d "$EMACS_TMP_DIR" ] ; then
+    TMP_DIR="$EMACS_TMP_DIR"
+else
+    TMP_DIR=$HOME/tmp
+fi
+
 
 usage () {
     cat <<EOF

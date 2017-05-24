@@ -31,24 +31,21 @@ COMMANDS
   (remove system system-list :test #'equalp))
 
 
-#|
-init system form:
-    (progn (asdf:load-asd "/path/to/hoge.asd")
-           (asdf:load-asd "/path/to/fuga.asd")
-           ...)
-|#
 (defun parse-systems (system-list-pathname)
-  (let ((raw-system-list (uiop:read-file-form system-list-pathname)))
-    (mapcar #'cadr (cdr raw-system-list))))
+  (with-open-file (in system-list-pathname)
+    (progn (read in)
+           (read in)
+           (eval (third (read in))))))
 
 (defun render-systems (system-list system-list-pathname)
   (with-open-file (out system-list-pathname
                        :direction :output
                        :if-exists :supersede)
-    (let ((load-system-forms (mapcar (lambda (s) (list 'asdf:load-asd s))
-                                     system-list)))
-      (print `(progn ,@load-system-forms) out)
-      nil)))
+    (format out "~s~%" '(defpackage :ros-tap (:use :cl)))
+    (format out "~s~%" '(in-package :ros-tap))
+    (format out "~s~%" `(defvar +system-list+ (quote ,system-list)))
+    (format out "~s~%" '(loop :for s :in +system-list+ :do (asdf:load-asd s)))
+    nil))
 
 
 (defun list-systems (system-list-pathname)

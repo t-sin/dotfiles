@@ -17,7 +17,7 @@ local projects. Also it see in CODE_DIR to search local codes.
 
 COMMANDS:
     show           show present configuration.
-    lclist         list asd files in local-projects.
+    local          list asd files in local-projects.
     list           list available asd files in code directory.
     put ASD_NAME   make symbolic link from ASD_FILE into roswell local-projects.
     del ASD_NAME   unlink ASD_FILE from roswell local-projects.
@@ -30,7 +30,7 @@ show () {
     echo "CODE_DIR=$CODE_DIR"
 }
 
-lclist () {
+local_list () {
     find "$ROSWELL_DIR/local-projects/" -maxdepth 1 -name '*.asd' \
         | sed "s|^$ROSWELL_DIR/local-projects/||"
 }
@@ -41,12 +41,44 @@ list () {
 }
 
 put () {
-    :
+    asd_file="$1"
+    proj_name=$(echo $asd_file | sed s/.asd$//)
+
+    if [ -z $asd_file ]; then
+        echo "specify .asd file"
+        exit 1
+    fi
+
+    if [ ! -e "$CODE_DIR/$proj_name/$asd_file" ]; then
+        echo "no such .asd file: '$CODE_DIR/$proj_name/$asd_file'"
+        exit 1
+    fi
+
+    if [ -e "$ROSWELL_DIR/local-projects/$asd_file" ]; then
+        echo "alread exists : '$ROSWELL_DIR/local-projects/$asd_file'"
+        exit 1
+    fi
+
+    ln -s "$CODE_DIR/$proj_name/$asd_file" "$ROSWELL_DIR/local-projects/$asd_file"
 }
 
 del () {
-    :
+    asd_file="$1"
+    proj_name=$(echo $asd_file | sed s/.asd$//)
+
+    if [ -z $asd_file ]; then
+        echo "specify .asd file"
+        exit 1
+    fi
+
+    if [ ! -e "$ROSWELL_DIR/local-projects/$asd_file" ]; then
+        echo "no such .asd file: '$CODE_DIR/$proj_name/$asd_file'"
+        exit 1
+    fi
+
+    unlink "$ROSWELL_DIR/local-projects/$asd_file"
 }
+
 
 if [ $# -lt 1 ]; then
     usage
@@ -54,7 +86,7 @@ fi
 
 case "$1" in
     "show" ) show ;;
-    "lclist" ) lclist ;;
+    "local" ) local_list ;;
     "list" ) list ;;
     "put" ) put $2 ;;
     "del" ) del $2 ;;

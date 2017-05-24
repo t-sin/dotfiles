@@ -57,19 +57,19 @@ init system form:
       (format t "there is no system list. if you 'tap', it'll be create!~%")))
 
 (defun tap-system (system-asd system-list-pathname)
-  (if asd-path
+  (if system-asd
       (let ((system-list (when (probe-file system-list-pathname)
                            (parse-systems system-list-pathname)))
-            (system (truename (pathname asd-path))))
-        (render-systems (add-system  system system-list) system-list-pathname))
+            (system (truename (pathname system-asd))))
+        (render-systems (add-system system system-list) system-list-pathname))
       (format t "specify .asd file~%")))
 
 (defun untap-system (system-asd system-list-pathname)
-  (when (and asd-path
+  (when (and system-asd
              (probe-file system-list-pathname))
     (let ((system-list (parse-systems system-list-pathname))
-          (system (truename (pathname asd-path))))
-      (render-systems (remove-system  system-list) system-list-pathname))))
+          (system (truename (pathname system-asd))))
+      (render-systems (remove-system system system-list) system-list-pathname))))
 
 
 (defvar +system-list-name+ "ros-tap-system-list")

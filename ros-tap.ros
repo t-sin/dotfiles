@@ -31,16 +31,6 @@ COMMANDS
   (remove system system-list :test #'equalp))
 
 
-(defvar +system-list-name+ "ros-tap-system-list")
-
-(defvar +system-list-filename+
-  (make-pathname :name +system-list-name+
-                 :type "lisp"))
-(defvar +system-list-pathname+
-  (make-pathname :name +system-list-name+
-                 :type "lisp"
-                 :directory (pathname-directory (ql:qmerge "local-init/"))))
-
 #|
 init system form:
     (progn (asdf:load-asd "/path/to/hoge.asd")
@@ -80,6 +70,17 @@ init system form:
     (let ((system-list (parse-systems system-list-pathname))
           (system (truename (pathname asd-path))))
       (render-systems (remove-system  system-list) system-list-pathname))))
+
+
+(defvar +system-list-name+ "ros-tap-system-list")
+
+(defvar +system-list-filename+
+  (make-pathname :name +system-list-name+
+                 :type "lisp"))
+(defvar +system-list-pathname+
+  (make-pathname :name +system-list-name+
+                 :type "lisp"
+                 :directory (pathname-directory (ql:qmerge "local-init/"))))
 
 (defun main (&rest argv)
   (if (< (length argv) 1)

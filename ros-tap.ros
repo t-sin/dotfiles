@@ -70,7 +70,6 @@ COMMANDS
 
 
 (defvar +system-list-name+ "ros-tap-system-list")
-
 (defvar +system-list-filename+
   (make-pathname :name +system-list-name+
                  :type "lisp"))

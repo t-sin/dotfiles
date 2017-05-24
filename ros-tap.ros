@@ -1,0 +1,95 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#| Add/Remove your project ASD file into quicklisp local-init
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf))
+
+(defpackage :ros.script.ros-tap.3704598400
+  (:use :cl))
+(in-package :ros.script.ros-tap.3704598400)
+
+(defvar +usage+ "
+ros-tap.ros COMMAND [PARAMS...]
+
+maintain local projects when initially loaded with quicklisp.
+
+COMMANDS
+    list            list systems when loaded with quicklisp.
+    tap ASDFILE     add ASDFILE to initially loading systems.
+    untap ASDNAME   remove ASDFILE to initially loading systems.
+    clear           clear initially loading system list.
+")
+
+(defun add-system (system system-list)
+  (if (member system system-list :test #'equalp)
+      system-list
+      (append system-list (list system))))
+
+(defun remove-system (system system-list)
+  (remove system system-list :test #'equalp))
+
+
+(defvar +system-list-name+ "ros-tap-system-list")
+
+(defvar +system-list-filename+
+  (make-pathname :name +system-list-name+
+                 :type "lisp"))
+(defvar +system-list-pathname+
+  (make-pathname :name +system-list-name+
+                 :type "lisp"
+                 :directory (pathname-directory (ql:qmerge "local-init/"))))
+
+#|
+init system form:
+    (progn (asdf:load-asd "/path/to/hoge.asd")
+           (asdf:load-asd "/path/to/fuga.asd")
+           ...)
+|#
+(defun parse-systems (system-list-pathname)
+  (let ((raw-system-list (uiop:read-file-form system-list-pathname)))
+    (mapcar #'cadr (cdr raw-system-list))))
+
+(defun render-systems (system-list system-list-pathname)
+  (with-open-file (out system-list-pathname
+                       :direction :output
+                       :if-exists :supersede)
+    (let ((load-system-forms (mapcar (lambda (s) (list 'asdf:load-asd s))
+                                     system-list)))
+      (print `(progn ,@load-system-forms) out)
+      nil)))
+
+
+(defun list-systems (system-list-pathname)
+  (if (probe-file system-list-pathname)
+      (format t "~{~a~%~}" (parse-systems system-list-pathname))
+      (format t "there is no system list. if you 'tap', it'll be create!~%")))
+
+(defun tap-system (system-asd system-list-pathname)
+  (if asd-path
+      (let ((system-list (when (probe-file system-list-pathname)
+                           (parse-systems system-list-pathname)))
+            (system (truename (pathname asd-path))))
+        (render-systems (add-system  system system-list) system-list-pathname))
+      (format t "specify .asd file~%")))
+
+(defun untap-system (system-asd system-list-pathname)
+  (when (and asd-path
+             (probe-file system-list-pathname))
+    (let ((system-list (parse-systems system-list-pathname))
+          (system (truename (pathname asd-path))))
+      (render-systems (remove-system  system-list) system-list-pathname))))
+
+(defun main (&rest argv)
+  (if (< (length argv) 1)
+      (progn (format t "~a~%" +usage+)
+             (uiop:quit 1))
+      (let ((command (nth 0 argv))
+            (asd-path (nth 1 argv)))
+        (case (intern (string-upcase command) :keyword)
+          (:list (list-systems +system-list-pathname+))
+          (:tap (tap-system asd-path +system-list-pathname+))
+          (:untap (untap-system asd-path +system-list-pathname+))
+          (t (format t "unkown command: '~a'~%" command))))))
+;;; vim: set ft=lisp lisp:

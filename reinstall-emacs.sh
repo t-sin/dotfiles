@@ -18,7 +18,7 @@ update_emacs () {
     rm -rf /tmp/emacs-$VERSION
     apt remove emacs-$VERSION -y
 
-    EMACS_TMP_DIR=/tmp /home/user/tmp/dotfiles/install-emacs.sh install master
+    EMACS_TMP_DIR=/tmp $HOME/code/dotfiles/install-emacs.sh install master
 
     emacs --version
 }

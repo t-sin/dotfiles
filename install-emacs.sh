@@ -2,6 +2,7 @@
 
 EMACS_SAVANNAH_BASE=https://git.savannah.gnu.org
 EMACS_SAVANNAH_TAGS=cgit/emacs.git/refs/tags
+EMACS_SAVANNAH_BRANCHES=cgit/emacs.git/refs/heads
 EMACS_SAVANNAH_SNAPSHOT=cgit/emacs.git/snapshot
 EMACS_VERSION_REGEX=[0-9]{2}\.[0-9][0-9a-z.-]+
 
@@ -21,7 +22,8 @@ usage: install-emacs <COMMAND> [PARAMS...]
 
 COMMANDS:
 
-  list     list available emacs versions.
+  list     list available emacs versions (tags).
+  branches list all emacs branches.
 
   install <version> [nogui]
            install emacs of specified version and its dependent packages.
@@ -30,6 +32,13 @@ COMMANDS:
 
 EOF
     exit 1
+}
+
+available_branches () {
+    curl -sL $EMACS_SAVANNAH_BASE/$EMACS_SAVANNAH_BRANCHES \
+        | grep 'emacs.git/log/?h' \
+        | sed -E -e "s|^.+href='/cgit/emacs.git/log/\?h=([^']+).+$|\1|" \
+        | sort
 }
 
 available_emacs () {
@@ -113,6 +122,8 @@ build_and_install_emacs () {
 
 if [ $# -eq 1 ] && [ "$1" = 'list' ]; then
     available_emacs
+elif [ $# -eq 1 ] && [ "$1" = 'branches' ]; then
+    available_branches
 elif [ $# -ge 2 ] && [ "$1" = 'install' ]; then
     NO_GUI=$3
     if [[ "$2" =~ ^(emacs-$EMACS_VERSION_REGEX|master)$ ]]; then

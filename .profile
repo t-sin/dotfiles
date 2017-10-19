@@ -24,6 +24,9 @@ PATH=$PATH:$GOROOT/bin
 export GOPATH=$OPT/gopath
 PATH=$PATH:$GOPATH/bin
 
+## nim
+PATH=$PATH:$HOME/opt/nim/bin
+
 ## Java
 export JAVA_HOME=/usr/local/jdk1.8.0_25
 PATH=$PATH:$JAVA_HOME/bin

@@ -27,6 +27,10 @@ PATH=$PATH:$GOPATH/bin
 ## nim
 PATH=$PATH:$HOME/opt/nim/bin
 
+## JavaScript
+
+PATH=$PATH:$HOME/opt/node/bin
+
 ## Java
 export JAVA_HOME=/usr/local/jdk1.8.0_25
 PATH=$PATH:$JAVA_HOME/bin

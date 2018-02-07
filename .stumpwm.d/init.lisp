@@ -3,6 +3,7 @@
 ;;;; modules
 (set-module-dir "~/.stumpwm.d/contrib")
 (load-module "amixer")
+(load-module "battery-portable")
 (load-module "hostname")
 (load-module "stumptray")
 
@@ -27,6 +28,6 @@
 
 ;;;; visual
 (setf *screen-mode-line-format*
-      "^[^B^7*%h^]")
+      "^B^3%h (%B) - %d ^B\| %n: %w")
 (mode-line)
 (run-commands "stumptray")

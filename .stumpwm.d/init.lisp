@@ -19,6 +19,8 @@
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
 
 (define-key *root-map* (kbd "t") "run-gterm")
+(undefine-key *root-map* (kbd "c"))
+(define-key *root-map* (kbd "c") "exec")
 
 ;;;; initializing
 (run-shell-command "gksudo --description 'running xkeysnail' -- xkeysnail ~/.xkeysnail.config.py --devices /dev/input/event3")

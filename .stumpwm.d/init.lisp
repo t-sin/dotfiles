@@ -1,5 +1,11 @@
 (in-package :stumpwm)
 
+;;;; modules
+(set-module-dir "~/.stumpwm.d/contrib")
+(load-module "amixer")
+(load-module "hostname")
+(load-module "stumptray")
+
 ;;;; definition
 (defcommand run-gterm ()
   nil
@@ -13,7 +19,9 @@
 
 ;;;; initializing
 (run-shell-command "gksudo --description 'running xkeysnail' -- xkeysnail ~/.xkeysnail.config.py --devices /dev/input/event3")
+
+;;;; visual
+(setf *screen-mode-line-format*
+      "^[^B^7*%h^]")
 (mode-line)
-
-
-
+(run-commands "stumptray")

@@ -14,7 +14,10 @@
 ;;;; key bindings
 (set-prefix-key (kbd "C-["))
 
-(undefine-key *root-map* (kbd "t"))
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Front-1- pulse")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Front-1+ pulse")
+(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle pulse")
+
 (define-key *root-map* (kbd "t") "run-gterm")
 
 ;;;; initializing

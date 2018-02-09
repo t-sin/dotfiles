@@ -1,7 +1,7 @@
 (in-package :stumpwm)
 
 ;;;; modules
-(set-module-dir "~/.stumpwm.d/contrib")
+(set-module-dir "~/.roswell/local-projects/stumpwm/stumpwm-contrib")
 (load-module "amixer")
 (load-module "battery-portable")
 (load-module "hostname")
@@ -24,7 +24,7 @@
 (define-key *root-map* (kbd "c") "exec")
 
 ;;;; initializing
-(run-shell-command "gksudo --description 'running xkeysnail' -- xkeysnail ~/.xkeysnail.config.py --devices /dev/input/event3")
+(run-shell-command "gksudo --description 'running xkeysnail' -- xkeysnail ~/xkeysnail.config.py --devices /dev/input/event3")
 
 ;;;; visual
 (setf *screen-mode-line-format*

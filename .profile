@@ -27,6 +27,16 @@ PATH=$PATH:$GOPATH/bin
 ## nim
 PATH=$PATH:$HOME/opt/nim/bin
 
+## erlang
+PATH=$PATH:$HOME/opt/otp/bin
+
+## picolisp
+PATH=$PATH:$HOME/opt/picolisp
+PATH=$PATH:$HOME/opt/picolisp/bin
+
+## lua
+PATH=$PATH:$HOME/opt/lua/src/
+
 ## JavaScript
 
 PATH=$PATH:$HOME/opt/node/bin

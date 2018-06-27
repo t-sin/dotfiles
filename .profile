@@ -30,6 +30,10 @@ PATH=$PATH:$GOPATH/bin
 ## nim
 PATH=$PATH:$HOME/opt/nim/bin
 
+## Rust
+PATH="$HOME/.cargo/bin:$PATH"
+
+
 ## erlang
 PATH=$PATH:$HOME/opt/otp/bin
 

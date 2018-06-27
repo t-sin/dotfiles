@@ -19,7 +19,7 @@ PATH=$PATH:$HOME/.roswell/bin
 PATH=$PATH:$HOME/.cim/bin
 
 ## Scheme
-PATH=$PATH:$HOME/.scheme-emv/bin
+PATH=$PATH:$HOME/.scheme-env/bin
 
 ## golang
 export GOROOT=$OPT/go

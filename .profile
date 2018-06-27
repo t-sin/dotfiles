@@ -18,6 +18,9 @@ PATH=$PATH:/usr/local/texlive/2013/bin/x86_64-linux
 PATH=$PATH:$HOME/.roswell/bin
 PATH=$PATH:$HOME/.cim/bin
 
+## Scheme
+PATH=$PATH:$HOME/.scheme-emv/bin
+
 ## golang
 export GOROOT=$OPT/go
 PATH=$PATH:$GOROOT/bin

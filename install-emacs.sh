@@ -25,6 +25,8 @@ COMMANDS:
   list     list available emacs versions (tags).
   branches list all emacs branches.
 
+  tarball <version>
+           output tarball URL specified version.
   install <version> [nogui]
            install emacs of specified version and its dependent packages.
            when supplied \`nogui\` (or non-empty string), build emacs
@@ -49,6 +51,10 @@ available_emacs () {
         | sort
 
     echo 'master'
+}
+
+tarball_url () {
+    echo "$EMACS_SAVANNAH_BASE/$EMACS_SAVANNAH_SNAPSHOT/$1.tar.gz"
 }
 
 install_dependent_packages () {
@@ -125,6 +131,8 @@ if [ $# -eq 1 ] && [ "$1" = 'list' ]; then
     available_emacs
 elif [ $# -eq 1 ] && [ "$1" = 'branches' ]; then
     available_branches
+elif [ $# -ge 2 ] && [ "$1" = 'tarball' ]; then
+    tarball_url "$2"
 elif [ $# -ge 2 ] && [ "$1" = 'install' ]; then
     NO_GUI=$3
     if [[ "$2" =~ ^(emacs-$EMACS_VERSION_REGEX|master)$ ]]; then

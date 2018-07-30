@@ -4,7 +4,7 @@ EMACS_SAVANNAH_BASE=https://git.savannah.gnu.org
 EMACS_SAVANNAH_TAGS=cgit/emacs.git/refs/tags
 EMACS_SAVANNAH_BRANCHES=cgit/emacs.git/refs/heads
 EMACS_SAVANNAH_SNAPSHOT=cgit/emacs.git/snapshot
-EMACS_VERSION_REGEX=[0-9]{2}\.[0-9][0-9a-z.-]+
+EMACS_VERSION_REGEX=[0-9]{2}\.[0-9][0-9a-z.-]*
 
 if [ -d "$EMACS_TMP_DIR" ] ; then
     TMP_DIR="$EMACS_TMP_DIR"
@@ -47,6 +47,7 @@ available_emacs () {
         | egrep "$EMACS_SAVANNAH_SNAPSHOT/" \
         | sed -En -e "s|.+$EMACS_SAVANNAH_SNAPSHOT/(emacs-$EMACS_VERSION_REGEX)\.tar\.gz'.+|\1|p" \
         | sort
+
     echo 'master'
 }
 

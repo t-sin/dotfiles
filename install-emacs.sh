@@ -122,7 +122,7 @@ build_and_install_emacs () {
         ./configure
     fi
     make
-    sudo checkinstall -y --pkgname=$EMACS_NAME --pkgversion=$EMACS_VERSION
+    sudo make install
     popd
 }
 

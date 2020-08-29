@@ -119,7 +119,9 @@ build_and_install_emacs () {
             --without-rsvg \
             --without-libotf
     else
-        ./configure
+        ./configure \
+            --with-x-toolkit=gtk3
+            --with-cairo
     fi
     make
     sudo make install

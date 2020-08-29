@@ -6,6 +6,7 @@
 (load-module "battery-portable")
 (load-module "hostname")
 (load-module "stumptray")
+(load-module "screenshot")
 
 ;;;; definition
 (defcommand run-gterm ()

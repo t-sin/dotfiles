@@ -1,5 +1,8 @@
 (in-package :stumpwm)
 
+(setq *input-window-gravity* :center)
+(setq *message-window-gravity* :center)
+
 ;;;; modules
 (set-module-dir "~/.roswell/local-projects/stumpwm/stumpwm-contrib")
 (load-module "amixer")

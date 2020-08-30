@@ -27,11 +27,15 @@
 (undefine-key *root-map* (kbd "c"))
 (define-key *root-map* (kbd "c") "exec")
 
-;;;; initializing
-(run-shell-command "gksudo --description 'running xkeysnail' -- xkeysnail ~/xkeysnail.config.py --devices /dev/input/event3")
-
 ;;;; visual
 (setf *screen-mode-line-format*
       "^B^3%h (%B) - %d ^B\| %n: %w")
 (mode-line)
 (run-commands "stumptray")
+
+;;;; initializing
+;; (run-shell-command "gksudo --description 'running xkeysnail' -- xkeysnail ~/xkeysnail.config.py --devices /dev/input/event3")
+(let* ((wpdir "/home/grey/code/lisp-alien-wallpapers/03_evolution-of-lisp")
+       (wpname "evolution-of-lisp-aliens_black.png")
+       (wp (format nil "~a/~a" wpdir wpname)))
+  (run-shell-command (format nil "feh --bg-fill '~a'" wp)))

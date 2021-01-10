@@ -39,3 +39,15 @@
        (wpname "evolution-of-lisp-aliens_black.png")
        (wp (format nil "~a/~a" wpdir wpname)))
   (run-shell-command (format nil "feh --bg-fill '~a'" wp)))
+
+;;;; start key remapper
+;; before this, do like this:
+;;
+;; sudo groupadd -f uinput
+;; sudo gpasswd -a $USER uinput
+;;
+;; cat <<EOF | sudo tee /etc/udev/rules.d/70-xkeysnail.rules
+;; KERNEL=="uinput", GROUP="uinput", MODE="0660", OPTIONS+="static_node=uinput"
+;; KERNEL=="event[0-9]*", GROUP="uinput", MODE="0660"
+;; EOF
+(run-shell-command "xkeysnail ~/xkeysnail.config.py")

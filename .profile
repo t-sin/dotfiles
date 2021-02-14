@@ -16,7 +16,7 @@ export EDITOR
 PATH=$PATH:$HOME/bin
 
 ## texlive
-PATH=$PATH:/usr/local/texlive/2013/bin/x86_64-linux
+PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
 
 ## Common Lisp
 PATH=$PATH:$HOME/.roswell/bin

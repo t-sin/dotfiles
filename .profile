@@ -7,6 +7,10 @@ alias emacsc='emacsclient'
 EDITOR=emacsclient
 export EDITOR
 
+# lem
+EDITOR=lem
+export EDITOR
+
 # paths
 
 PATH=$PATH:$HOME/bin

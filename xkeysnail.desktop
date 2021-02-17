@@ -1,0 +1,11 @@
+# in GNOME shell, place this file to ~/config/autostart
+[Desktop Entry]
+Type=Application
+Exec=xkeysnail /home/grey/xkeysnail.config.py
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ja]=xkeysnail
+Name=xkeysnail
+Comment[ja]=
+Comment=

@@ -2,6 +2,8 @@
 
 OPT=$HOME/opt
 
+export TERM=xterm-256color
+
 # emacs
 alias emacsc='emacsclient'
 EDITOR=emacsclient
@@ -73,3 +75,4 @@ fi
 wihi () {
     sed 's/t/ﾋ/g;s/wi/ｳｨ/g;s/er/ﾋｰ/g'
 }
+source "$HOME/.cargo/env"

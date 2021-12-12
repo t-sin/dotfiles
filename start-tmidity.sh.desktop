@@ -1,0 +1,11 @@
+# in GNOME shell, place this file to ~/.config/autostart
+[Desktop Entry]
+Type=Application
+Exec=~/bin/start-tmidity.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ja]=tmidity
+Name=tmidity
+Comment[ja]=
+Comment=

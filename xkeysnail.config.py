@@ -45,7 +45,7 @@ define_keymap(re.compile("Zeal"), {
 }, "Zeal")
 
 # Emacs-like keybindings in non-Emacs applications
-define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal", "Emacs", "URxvt"), {
+define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal", "Emacs", "URxvt", "Code", "Lem SDL2"), {
     # Cursor
     K("C-b"): with_mark(K("left")),
     K("C-f"): with_mark(K("right")),
@@ -87,7 +87,7 @@ define_keymap(lambda wm_class: wm_class not in ("Gnome-terminal", "Emacs", "URxv
     # K("C-r"): K("Shift-F3"),
     # K("M-Shift-key_5"): K("C-h"),
     # Cancel
-    K("C-g"): [K("esc"), set_mark(False)],
+    # K("C-g"): [K("esc"), set_mark(False)],
     # Escape
     K("C-q"): escape_next_key,
     # C-x YYY

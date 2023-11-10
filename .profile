@@ -1,21 +1,40 @@
 #!/bin/bash
 
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME
+
 OPT=$HOME/opt
 
+export LC_COLLATE="en_US.UTF-8"
 export TERM=xterm-256color
+
+export PATH=$PATH:$HOME/.local/bin
 
 # emacs
 alias emacsc='emacsclient'
 EDITOR=emacsclient
 export EDITOR
 
-# lem
+# qlot
+
+export PATH="/home/grey/.qlot/bin:$PATH"
+
+ #lem
+
 EDITOR=lem
 export EDITOR
 
 # paths
 
 PATH=$PATH:$HOME/bin
+
+## yabridge (VST)
+
+PATH=$PATH:/home/grey/.local/share/yabridge
+
+## android studio
+
+PATH=$PATH:$HOME/opt/android-studio/bin
 
 ## texlive
 PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
@@ -62,17 +81,15 @@ PATH=$PATH:$JAVA_HOME/bin
 #PATH=$PATH:$OPT/android-sdk-linux/tools
 #PATH=$PATH:$OPT/android-sdk-linux/platform-tools
 
+# DaVinci Resolve
+PATH=$PATH:/opt/resolve/bin
+
+# wine
+PATH=$PATH:/opt/wine-staging/bin
+
 export PATH
 
 
 if [ -f "$HOME/.bashrc" ]; then
     source "$HOME/.bashrc"
 fi
-
-
-## for me
-
-wihi () {
-    sed 's/t/ﾋ/g;s/wi/ｳｨ/g;s/er/ﾋｰ/g'
-}
-source "$HOME/.cargo/env"

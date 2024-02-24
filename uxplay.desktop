@@ -1,0 +1,11 @@
+# in GNOME shell, place this file to ~/config/autostart
+[Desktop Entry]
+Type=Application
+Exec=uxplay -n 'timerwolf' -nh -m
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ja]=uxplay
+Name=uxplay
+Comment[ja]=
+Comment=

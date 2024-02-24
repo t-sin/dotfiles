@@ -50,12 +50,6 @@ PATH=$PATH:$HOME/.cim/bin
 ## Scheme
 PATH=$PATH:$HOME/.scheme-env/bin
 
-## golang
-export GOROOT=$OPT/go
-PATH=$PATH:$GOROOT/bin
-export GOPATH=$OPT/gopath
-PATH=$PATH:$GOPATH/bin
-
 ## nim
 PATH=$PATH:$HOME/opt/nim/bin
 

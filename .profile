@@ -1,8 +1,5 @@
 #!/bin/bash
 
-JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export JAVA_HOME
-
 OPT=$HOME/opt
 
 export LC_COLLATE="en_US.UTF-8"
@@ -32,9 +29,16 @@ PATH=$PATH:$HOME/bin
 
 PATH=$PATH:/home/grey/.local/share/yabridge
 
+## java
+
+export JAVA_HOME=/usr/lib/jvm/default-java
+
 ## android studio
 
-PATH=$PATH:$HOME/opt/android-studio/bin
+export ANDROID_HOME=$HOME/data/android/sdk/
+PATH=$PATH:$ANDROID_HOME/bin
+PATH=$PATH:$ANDROID_HOME/platform-tools
+PATH=$PATH:$ANDROID_HOME/emulator
 
 ## texlive
 PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
@@ -71,11 +75,7 @@ PATH=$PATH:$HOME/opt/lua/src/
 
 ## JavaScript
 
-PATH=$PATH:$HOME/opt/node/bin
-
-## Java
-export JAVA_HOME=/usr/local/jdk1.8.0_25
-PATH=$PATH:$JAVA_HOME/bin
+PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # Android SDK
 #PATH=$PATH:$OPT/android-sdk-linux/tools

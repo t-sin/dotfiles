@@ -35,8 +35,7 @@ export JAVA_HOME=/usr/lib/jvm/default-java
 
 ## android studio
 
-export ANDROID_HOME=$HOME/data/android/sdk/
-PATH=$PATH:$ANDROID_HOME/bin
+export ANDROID_HOME=$HOME/Android/Sdk
 PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$ANDROID_HOME/emulator
 
@@ -87,3 +86,4 @@ export PATH
 if [ -f "$HOME/.bashrc" ]; then
     source "$HOME/.bashrc"
 fi
+. "$HOME/.cargo/env"

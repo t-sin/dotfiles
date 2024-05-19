@@ -36,6 +36,7 @@ export JAVA_HOME=/usr/lib/jvm/default-java
 ## android studio
 
 export ANDROID_HOME=$HOME/Android/Sdk
+PATH=$PATH:$ANDROID_HOME/bin
 PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$ANDROID_HOME/emulator
 
@@ -69,10 +70,6 @@ PATH=$PATH:$HOME/opt/lua/src/
 ## JavaScript
 
 PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# Android SDK
-#PATH=$PATH:$OPT/android-sdk-linux/tools
-#PATH=$PATH:$OPT/android-sdk-linux/platform-tools
 
 # DaVinci Resolve
 PATH=$PATH:/opt/resolve/bin

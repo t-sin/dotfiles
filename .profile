@@ -39,6 +39,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 PATH=$PATH:$ANDROID_HOME/bin
 PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$ANDROID_HOME/emulator
+export ANDROID_NDK=$ANDROID_HOME/ndk/current
 
 ## texlive
 PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux

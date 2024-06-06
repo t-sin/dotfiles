@@ -31,7 +31,7 @@ PATH=$PATH:/home/grey/.local/share/yabridge
 
 ## java
 
-export JAVA_HOME=/usr/lib/jvm/default-java
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 ## android studio
 
@@ -69,7 +69,8 @@ PATH=$PATH:$HOME/opt/lua/src/
 
 ## JavaScript
 
-PATH=$HOME/.nodebrew/current/bin:$PATH
+PATH=$PATH:$HOME/.nodebrew/current/bin
+PATH=$PATH:$HOME/opt/node/bin
 
 # DaVinci Resolve
 PATH=$PATH:/opt/resolve/bin

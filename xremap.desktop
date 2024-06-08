@@ -1,0 +1,26 @@
+# To auto start xremap, do this:
+#
+# 1. add $USER to `input` group
+#
+# ```shell-session
+# $ sudo gpasswd -a $USER input
+# ```
+#
+# 2. add new udev rule (to run xremap without sudo)
+#
+# ```shell-session
+# $ echo 'KERNEL=="uinput", GROUP="input", TAG+="uaccess"' | sudo tee /etc/udev/rules.d/input.rules
+# ```
+#
+# 3. finally place ths file to ~/.config/autostart
+#
+[Desktop Entry]
+Type=Application
+Exec=/home/grey/bin/xremap /home/grey/.xremap.config.yaml
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ja]=xremap
+Name=xkeysnail
+Comment[ja]=
+Comment=

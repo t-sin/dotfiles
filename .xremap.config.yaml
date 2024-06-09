@@ -5,6 +5,13 @@ modmap:
 
 keymap:
   - name: default
+    application:
+      not:
+       - Gnome-terminal
+       - gnome-terminal-server
+       - Emacs
+       - Code
+       - code.desktop
     remap:
       # cursor
       C-b: left

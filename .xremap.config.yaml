@@ -12,10 +12,6 @@ keymap:
       C-p: up
       C-n: down
 
-      # deletion
-      C-d: delete
-      C-h: backspace
-
   - name: mostly default
     application:
       not:
@@ -30,12 +26,14 @@ keymap:
       C-e: end
 
       # deletion
+      C-d: delete
+      C-h: backspace
       C-k: [Shift-end, backspace]
 
       # clip board
       C-y: C-v
-      C-w: C-x
-      M-w: C-c
+      #C-w: C-x
+      #M-w: C-c
 
       # SKK hack for Chrome
       #C-j: C-m
@@ -73,8 +71,8 @@ keymap:
       #C-j: enter  # disabled for SKK
       C-o: [enter, left]
       # Copy
-      C-w: [C-x, { set_mark: false }]
-      M-w: [C-c, { set_mark: false }]
+      #C-w: [C-x, { set_mark: false }]
+      #M-w: [C-c, { set_mark: false }]
       C-y: [C-v, { set_mark: false }]
       # Delete
       C-d: [delete, { set_mark: false }]

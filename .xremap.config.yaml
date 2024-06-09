@@ -4,24 +4,13 @@ modmap:
       CapsLock: Control_L
 
 keymap:
-  - name: default (smallest Emacs-like binding)
+  - name: default
     remap:
       # cursor
       C-b: left
       C-f: right
       C-p: up
       C-n: down
-
-  - name: mostly default
-    application:
-      not:
-        - Gnome-terminal
-        - gnome-terminal-server
-        - Emacs
-        - Code
-        - code.desktop
-    remap:
-      # cursor
       C-a: home
       C-e: end
 

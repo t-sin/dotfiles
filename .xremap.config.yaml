@@ -1,47 +1,55 @@
 modmap:
-  - name: Global
+  - name: basic
     remap:
-      CapsLock: Ctrl_L
+      CapsLock: Control_L
 
 keymap:
-  - name: Default -- some of these are overridden by the above definitions
-#    application:
-#      not: [Gnome-terminal]
+  - name: default (smallest Emacs-like binding)
     remap:
-      # Emacs basic
+      # cursor
       C-b: left
       C-f: right
       C-p: up
       C-n: down
 
-      # Emacs word
-      Super-b: C-left
-      Super-f: C-right
-
-      # Emacs lines
-      C-a: home # TODO: Alt-C-a
-      C-e: end # TODO: Alt-C-e
-      C-k: [Shift-end, backspace] # TODO: Alt-C-k
-
-      # Alt -> Ctrl
-      #Super-a: C-a
-      #Super-z: C-z
-      #Super-x: C-x
-      #Super-c: C-c
-      #Super-v: C-v
-      #Super-w: C-w
-      #Super-t: C-t
-      #Super-l: C-l
-
+      # deletion
       C-d: delete
-      Super-d: C-delete
+      C-h: backspace
+
+  - name: mostly default
+    application:
+      not:
+        - Gnome-terminal
+        - gnome-terminal-server
+        - Emacs
+        - Code
+        - code.desktop
+    remap:
+      # cursor
+      C-a: home
+      C-e: end
+
+      # deletion
+      C-k: [Shift-end, backspace]
+
+      # clip board
+      C-y: C-v
+      C-w: C-x
+      M-w: C-c
 
       # SKK hack for Chrome
       #C-j: C-m
 
   - name: fully Emacs-like
     application:
-      only: []
+      # for easy disabling
+      # only: []
+      not:
+       - Gnome-terminal
+       - gnome-terminal-server
+       - Emacs
+       - Code
+       - code.desktop
     remap:
       # Cursor
       C-b: { with_mark: left }
@@ -62,7 +70,7 @@ keymap:
       M-Shift-dot: { with_mark: C-end }
       # Newline
       C-m: enter
-      C-j: enter
+      #C-j: enter  # disabled for SKK
       C-o: [enter, left]
       # Copy
       C-w: [C-x, { set_mark: false }]

@@ -14,6 +14,9 @@
 #
 # 3. finally place ths file to ~/.config/autostart
 #
+# 4. if GNOME with Wayland, install this extension for applicatoin selectoin
+#    <https://extensions.gnome.org/extension/5060/xremap/>
+#
 [Desktop Entry]
 Type=Application
 Exec=/home/grey/bin/xremap /home/grey/.xremap.config.yaml

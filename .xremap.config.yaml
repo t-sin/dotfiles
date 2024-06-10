@@ -3,41 +3,12 @@ modmap:
     remap:
       CapsLock: Control_L
 
-keymap:
-  - name: default
-    application:
-      not:
-       - Gnome-terminal
-       - gnome-terminal-server
-       - Emacs
-       - Code
-       - code.desktop
-    remap:
-      # cursor
-      C-b: left
-      C-f: right
-      C-p: up
-      C-n: down
-      C-a: home
-      C-e: end
-
-      # deletion
-      C-d: delete
-      C-h: backspace
-      C-k: [Shift-end, backspace]
-
-      # clip board
-      C-y: C-v
-      #C-w: C-x
-      #M-w: C-c
-
       # SKK hack for Chrome
       #C-j: C-m
 
-  - name: fully Emacs-like
+keymap:
+  - name: default
     application:
-      # for easy disabling
-      # only: []
       not:
        - Gnome-terminal
        - gnome-terminal-server
@@ -59,49 +30,50 @@ keymap:
       # Page up/down
       M-v: { with_mark: pageup }
       C-v: { with_mark: pagedown }
-      # Beginning/End of file
-      M-Shift-comma: { with_mark: C-home }
-      M-Shift-dot: { with_mark: C-end }
-      # Newline
-      C-m: enter
-      #C-j: enter  # disabled for SKK
-      C-o: [enter, left]
-      # Copy
-      #C-w: [C-x, { set_mark: false }]
-      #M-w: [C-c, { set_mark: false }]
+#      # Beginning/End of file
+#      M-Shift-comma: { with_mark: C-home }
+#      M-Shift-dot: { with_mark: C-end }
+#      # Newline
+#      C-m: enter
+#      C-j: enter  # disabled for SKK
+#      C-o: [enter, left]
+#      # Copy
+#      C-w: [C-x, { set_mark: false }]
+#      M-w: [C-c, { set_mark: false }]
       C-y: [C-v, { set_mark: false }]
       # Delete
+      C-h: [backspace, {set_mark: false}]
       C-d: [delete, { set_mark: false }]
-      M-d: [C-delete, { set_mark: false }]
+#      M-d: [C-delete, { set_mark: false }]
       # Kill line
-      C-k: [Shift-end, C-x, { set_mark: false }]
-      # Kill word backward
-      Alt-backspace: [C-backspace, {set_mark: false}]
-      # set mark next word continuously.
-      C-M-space: [C-Shift-right, {set_mark: true}]
-      # Undo
-      C-slash: [C-z, { set_mark: false }]
-      C-Shift-ro: C-z
-      # Mark
-      C-space: { set_mark: true }
-      # Search
-      C-s: C-f
-      C-r: Shift-F3
-      M-Shift-5: C-h
-      # Cancel
-      C-g: [esc, { set_mark: false }]
-      # C-x YYY
-      C-x:
-        remap:
-          # C-x h (select all)
-          h: [C-home, C-a, { set_mark: true }]
-          # C-x C-f (open)
-          C-f: C-o
-          # C-x C-s (save)
-          C-s: C-s
-          # C-x k (kill tab)
-          k: C-f4
-          # C-x C-c (exit)
-          C-c: C-q
-          # C-x u (undo)
-          u: [C-z, { set_mark: false }]
+      C-k: [Shift-end, C-c, backspace, { set_mark: false }]
+#      # Kill word backward
+#      Alt-backspace: [C-backspace, {set_mark: false}]
+#      # set mark next word continuously.
+#      C-M-space: [C-Shift-right, {set_mark: true}]
+#      # Undo
+#      C-slash: [C-z, { set_mark: false }]
+#      C-Shift-ro: C-z
+#      # Mark
+#      C-space: { set_mark: true }
+#      # Search
+#      C-s: C-f
+#      C-r: Shift-F3
+#      M-Shift-5: C-h
+#      # Cancel
+#      C-g: [esc, { set_mark: false }]
+#      C-x YYY
+#      C-x:
+#        remap:
+#          # C-x h (select all)
+#          h: [C-home, C-a, { set_mark: true }]
+#          # C-x C-f (open)
+#          C-f: C-o
+#          # C-x C-s (save)
+#          C-s: C-s
+#          # C-x k (kill tab)
+#          k: C-f4
+#          # C-x C-c (exit)
+#          C-c: C-q
+#          # C-x u (undo)
+#          u: [C-z, { set_mark: false }]

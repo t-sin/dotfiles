@@ -7,19 +7,13 @@ export TERM=xterm-256color
 
 export PATH=$PATH:$HOME/.local/bin
 
-# emacs
-alias emacsc='emacsclient'
-EDITOR=emacsclient
-export EDITOR
-
 # qlot
 
 export PATH="/home/grey/.qlot/bin:$PATH"
 
- #lem
+#lem
 
-EDITOR=lem
-export EDITOR
+export EDITOR=lem
 
 # paths
 
@@ -81,8 +75,13 @@ PATH=$PATH:/opt/wine-staging/bin
 
 export PATH
 
+# for mac
+if [ $(uname) == "Darwin" ]; then
+  . ~/.profile.osx
+fi
 
 if [ -f "$HOME/.bashrc" ]; then
     source "$HOME/.bashrc"
 fi
+
 . "$HOME/.cargo/env"

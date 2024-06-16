@@ -1,33 +1,28 @@
 #!/bin/bash
 
-OPT=$HOME/opt
+PATH=$PATH:$HOME/bin
+PATH=$PATH:$HOME/.local/bin
 
+export OPT=$HOME/opt
+export EDITOR=lem
 export LC_COLLATE="en_US.UTF-8"
 export TERM=xterm-256color
 
-export PATH=$PATH:$HOME/.local/bin
-
-# qlot
-
-export PATH="/home/grey/.qlot/bin:$PATH"
-
-#lem
-
-export EDITOR=lem
-
-# paths
-
-PATH=$PATH:$HOME/bin
-
-## yabridge (VST)
-
-PATH=$PATH:/home/grey/.local/share/yabridge
-
-## java
+# java
 
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
-## android studio
+
+# Common Lisp
+
+PATH=$PATH:$HOME/.roswell/bin
+
+# Node js
+
+PATH=$PATH:$HOME/.nodebrew/current/bin
+PATH=$PATH:$OPT/node/bin
+
+# android studio
 
 export ANDROID_HOME=$HOME/Android/Sdk
 PATH=$PATH:$ANDROID_HOME/bin
@@ -35,43 +30,13 @@ PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$ANDROID_HOME/emulator
 export ANDROID_NDK=$ANDROID_HOME/ndk/current
 
-## texlive
-PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
+# yabridge (VST)
 
-## Common Lisp
-PATH=$PATH:$HOME/.roswell/bin
-PATH=$PATH:$HOME/.cim/bin
-
-## Scheme
-PATH=$PATH:$HOME/.scheme-env/bin
-
-## nim
-PATH=$PATH:$HOME/opt/nim/bin
-
-## Rust
-PATH="$HOME/.cargo/bin:$PATH"
-
-
-## erlang
-PATH=$PATH:$HOME/opt/otp/bin
-
-## picolisp
-PATH=$PATH:$HOME/opt/picolisp
-PATH=$PATH:$HOME/opt/picolisp/bin
-
-## lua
-PATH=$PATH:$HOME/opt/lua/src/
-
-## JavaScript
-
-PATH=$PATH:$HOME/.nodebrew/current/bin
-PATH=$PATH:$HOME/opt/node/bin
+PATH=$PATH:/home/grey/.local/share/yabridge
 
 # DaVinci Resolve
-PATH=$PATH:/opt/resolve/bin
 
-# wine
-PATH=$PATH:/opt/wine-staging/bin
+PATH=$PATH:/opt/resolve/bin
 
 export PATH
 
@@ -83,5 +48,3 @@ fi
 if [ -f "$HOME/.bashrc" ]; then
     source "$HOME/.bashrc"
 fi
-
-. "$HOME/.cargo/env"

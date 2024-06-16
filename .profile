@@ -16,6 +16,7 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 # Common Lisp
 
 PATH=$PATH:$HOME/.roswell/bin
+PATH=$PATH:$HOME/.qlot/bin
 
 # Node js
 

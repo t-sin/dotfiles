@@ -42,7 +42,7 @@ export PATH
 
 # for mac
 if [ $(uname) == "Darwin" ]; then
-  . ~/.profile.osx
+  . ~/.profile.mac
 fi
 
 if [ -f "$HOME/.bashrc" ]; then

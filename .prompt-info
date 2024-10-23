@@ -1,0 +1,3 @@
+# set machine info for shell prompt
+USERNAME=$USER
+MACHINENAME=$HOSTNAME

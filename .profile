@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# set prompt
+set_prompt() {
+  source "$HOME/.prompt-info"
+  export PS1="\[\033[01;32m\]${USERNAME}@${MACHINENAME}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+}
+
+set_prompt
+
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.local/bin
 

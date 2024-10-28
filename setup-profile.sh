@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pwd=$(dirname $0)
+pwd=$(readlink -f $(dirname $0))
 
 debug() {
   if [ "$DEBUG" = "1" ]; then
@@ -11,9 +11,9 @@ debug() {
 debug "pwd = $pwd"
 
 do_cmd() {
-  cmd="$1"
-  file="$2"
-  dest="$3"
+  local cmd="$1"
+  local file="$2"
+  local dest="$3"
 
   if [ "$dest" = "" ]; then
     dest="$HOME/"
@@ -32,14 +32,16 @@ copy_file() {
 }
 
 # bash
+create_symlink "$pwd/.profile.util"
 create_symlink "$pwd/.profile"
 copy_file "$pwd/.prompt-info" "$HOME/"
 
 # tmux
 create_symlink "$pwd/.tmux.conf" "$HOME/"
 
-# for mac
-if [ "$(uname -a)" = "Darwin" ]; then
-  # bash
-  ln -s "$pwd/.profile.mac" "$HOME/"
+# os specific
+if [ "$(uname -o)" = "GNU/Linux" ]; then
+  create_symlink "$pwd/.profile.linux"
+elif [ "$(uname -o)" = "Darwin" ]; then
+  create_symlink "$pwd/.profile.mac"
 fi

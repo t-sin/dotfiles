@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# set prompt
-set_prompt() {
-  source "$HOME/.prompt-info"
-  export PS1="\[\033[01;32m\]${USERNAME}@${MACHINENAME}\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-}
-
-set_prompt
-
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.local/bin
 
@@ -16,15 +8,38 @@ export EDITOR=lem
 export LC_COLLATE="en_US.UTF-8"
 export TERM=xterm-256color
 
-# java
+# enable colors for some commands
+if [ ! "$(which dircolors)" = "" ]; then
+  eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+fi
 
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+# enable some aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
+# enable completion
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+source "$HOME/.profile.util"
+set_default_prompt
 
 # Common Lisp
 
 PATH=$PATH:$HOME/.roswell/bin
 PATH=$PATH:$HOME/.qlot/bin
+
+# Rust
+
+source "$HOME/.cargo/env"
 
 # Node js
 
@@ -39,21 +54,10 @@ PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$ANDROID_HOME/emulator
 export ANDROID_NDK=$ANDROID_HOME/ndk/current
 
-# yabridge (VST)
-
-PATH=$PATH:/home/grey/.local/share/yabridge
-
-# DaVinci Resolve
-
-PATH=$PATH:/opt/resolve/bin
+if [ "$(uname -o)" = "GNU/Linux" ]; then
+  source ~/.profile.linux
+elif [ "$(uname -o)" = "Darwin" ]; then
+  source ~/.profile.mac
+fi
 
 export PATH
-
-# for mac
-if [ $(uname) == "Darwin" ]; then
-  . ~/.profile.mac
-fi
-
-if [ -f "$HOME/.bashrc" ]; then
-    source "$HOME/.bashrc"
-fi

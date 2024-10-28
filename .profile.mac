@@ -1,7 +1,4 @@
-# aliases
-alias ls='ls -G'
-alias ll='ls -alG'
-alias la='ls -aG'
+#!/bin/bash
 
 # homebrew
 eval $(/opt/homebrew/bin/brew shellenv)

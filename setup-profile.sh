@@ -34,6 +34,10 @@ do_cmd() {
   $cmd "$file" "$dest"
 }
 
+create_dir() {
+  do_cmd "mkdir -p" "$1" "$2"
+}
+
 create_symlink() {
   do_cmd "ln -s" "$1" "$2"
 }
@@ -51,6 +55,10 @@ copy_file "$pwd/.prompt-info"
 
 # tmux
 create_symlink "$pwd/.tmux.conf"
+
+# ~/bin
+create_dir "$HOME/bin"
+create_symlink "$pwd/sbcl" "$HOME/bin/"
 
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then

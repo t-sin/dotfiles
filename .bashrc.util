@@ -1,11 +1,11 @@
 #!/bin/bash
 
 set_prompt() {
-  local chroot_color='\033[33m'
-  local username_color='\033[00m'
-  local hostname_color='\033[32;01m'
-  local workdir_color='\033[34;01m'
-  local color_term='\033[00m'
+  local chroot_color='\[\033[33m\]'
+  local username_color='\[\033[00m\]'
+  local hostname_color='\[\033[32;1m\]'
+  local workdir_color='\[\033[34;1m\]'
+  local color_term='\[\033[00m\]'
 
   local chroot=""
   local user="${USERNAME}"
@@ -25,7 +25,7 @@ set_prompt() {
   fi
 
   if [ "$color_prompt" = "yes" ]; then
-    chroot="\[${chroot_color}${chroot}${color_term}\]"
+    chroot="${chroot_color}${chroot}${color_term}"
     user="${username_color}${user}${color_term}"
     machine="${hostname_color}${machine}${color_term}"
     ps1="${chroot}${user}@${machine}:${workdir_color}\w${color_term}\$ "

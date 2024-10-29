@@ -8,30 +8,6 @@ export EDITOR=lem
 export LC_COLLATE="en_US.UTF-8"
 export TERM=xterm-256color
 
-# enable colors for some commands
-if [ ! "$(which dircolors)" = "" ]; then
-  eval "$(dircolors -b)"
-  alias ls='ls --color=auto'
-  alias grep='grep --color=auto'
-fi
-
-# enable some aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# enable completion
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-source "$HOME/.profile.util"
-set_default_prompt
-
 # Common Lisp
 
 PATH=$PATH:$HOME/.roswell/bin
@@ -55,9 +31,11 @@ PATH=$PATH:$ANDROID_HOME/emulator
 export ANDROID_NDK=$ANDROID_HOME/ndk/current
 
 if [ "$(uname -o)" = "GNU/Linux" ]; then
-  source ~/.profile.linux
+  source ~/.bash_profile.linux
 elif [ "$(uname -o)" = "Darwin" ]; then
-  source ~/.profile.mac
+  source ~/.bash_profile.mac
 fi
 
 export PATH
+
+test -r "$HOME/.bashrc" && source "$HOME/.bashrc"

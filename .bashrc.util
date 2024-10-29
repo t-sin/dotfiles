@@ -5,7 +5,7 @@ set_prompt() {
   local username_color='\033[00m'
   local hostname_color='\033[32;01m'
   local workdir_color='\033[34;01m'
-  local color_term='\033[0m'
+  local color_term='\033[00m'
 
   local chroot=""
   local user="${USERNAME}"
@@ -26,9 +26,14 @@ set_prompt() {
   export PS1="$ps1"
 }
 
+
+set_color_prompt() {
+  color_prompt=yes set_prompt
+}
+
 set_default_prompt() {
   source "$HOME/.prompt-info"
-  color_prompt=yes set_prompt
+  set_color_prompt
 }
 
 sbcl_home() {

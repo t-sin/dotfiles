@@ -6,10 +6,8 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 
 # yabridge (VST)
 
-PATH=$PATH:/home/grey/.local/share/yabridge
+PATH=$PATH:$HOME/.local/share/yabridge
 
 # DaVinci Resolve
 
 PATH=$PATH:/opt/resolve/bin
-
-

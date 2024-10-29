@@ -16,12 +16,25 @@ set_prompt() {
     chroot="$debian_chroot"
   fi
 
+  if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tpuf setaf 1 >&/dev/null; then
+      color_prompt=yes
+    else
+      color_prompt=
+    fi
+  fi
+
   if [ "$color_prompt" = "yes" ]; then
     chroot="\[${chroot_color}${chroot}${color_term}\]"
     user="${username_color}${user}${color_term}"
     machine="${hostname_color}${machine}${color_term}"
     ps1="${chroot}${user}@${machine}:${workdir_color}\w${color_term}\$ "
   fi
+  unset color_prompt force_color_prompt
+
+#  if [[ "$TERM" =~ (xterm*|rxvt*) ]]; then ;
+#    #ps1="\[\e]0;${chroot}${user}@${machine}: \w\a\]$ps1"
+#  fi
 
   export PS1="$ps1"
 }

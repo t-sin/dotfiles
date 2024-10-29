@@ -1,7 +1,11 @@
 #!/bin/bash
 
-source "$HOME/.bashrc.util"
-set_default_prompt
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
 
 # enable colors for some commands
 if [ ! "$(which dircolors)" = "" ]; then
@@ -23,3 +27,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+source "$HOME/.bashrc.util"
+set_default_prompt

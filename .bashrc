@@ -28,5 +28,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source "$HOME/.bashrc.util"
 set_default_prompt

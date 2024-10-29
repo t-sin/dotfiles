@@ -43,7 +43,7 @@ copy_file() {
 }
 
 # bash
-create_symlink "$pwd/.bashrc.util"
+create_symlink "$pwd/.bash_util"
 create_symlink "$pwd/.bashrc"
 create_symlink "$pwd/.bash_logout"
 create_symlink "$pwd/.bash_profile"

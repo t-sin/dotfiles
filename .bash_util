@@ -63,6 +63,6 @@ sbcl_home() {
   echo "${sbcl_home}"
 }
 
-sbcl() {
+run_sbcl() {
   "$(sbcl_home)/bin/sbcl" $@
 }

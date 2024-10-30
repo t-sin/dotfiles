@@ -1,7 +1,1 @@
 #!/bin/bash
-
-# Android SDK
-export ANDROID_HOME="$HOME/Android/Sdk"
-PATH=$PATH:$ANDROID_HOME/bin
-PATH=$PATH:$ANDROID_HOME/platform-tools
-PATH=$PATH:$ANDROID_HOME/emulator

@@ -17,11 +17,6 @@ PATH=$PATH:$HOME/.qlot/bin
 
 source "$HOME/.cargo/env"
 
-# Node js
-
-PATH=$PATH:$HOME/.nodebrew/current/bin
-PATH=$PATH:$OPT/node/bin
-
 # android studio
 
 export ANDROID_HOME=$HOME/Android/Sdk

@@ -28,6 +28,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+test -z "${set_default_prompt+z}" && . "$HOME/.bash_util"
 set_default_prompt
 
 if [ "$(uname -o)" = "GNU/Linux" ]; then

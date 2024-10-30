@@ -29,3 +29,15 @@ if ! shopt -oq posix; then
 fi
 
 set_default_prompt
+
+if [ "$(uname -o)" = "GNU/Linux" ]; then
+  # asdf
+  . "$HOME/.asdf/asdf.sh"
+  . "$HOME/.asdf/completions/asdf.bash"
+elif [ "$(uname -o)" = "Darwin" ]; then
+  # homebrew
+  eval $(/opt/homebrew/bin/brew shellenv)
+  # asdf
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
+  . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+fi

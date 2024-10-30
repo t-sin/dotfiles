@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# homebrew
-eval $(/opt/homebrew/bin/brew shellenv)
-
-# asdf
-source /opt/homebrew/opt/asdf/libexec/asdf.sh
-
 # Android SDK
 export ANDROID_HOME="$HOME/Android/Sdk"
 PATH=$PATH:$ANDROID_HOME/bin

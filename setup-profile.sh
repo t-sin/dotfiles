@@ -46,15 +46,14 @@ copy_file() {
   do_cmd "cp" "$1" "$2"
 }
 
-# bash
+copy_file "$pwd/.prompt-info"
 create_symlink "$pwd/.bash_util"
 create_symlink "$pwd/.bashrc"
 create_symlink "$pwd/.bash_logout"
 create_symlink "$pwd/.bash_profile"
-copy_file "$pwd/.prompt-info"
 
-# tmux
 create_symlink "$pwd/.tmux.conf"
+create_symlink "$pwd/.xremap.config.yaml"
 
 # ~/bin
 create_dir "$HOME/bin"

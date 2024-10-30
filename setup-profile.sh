@@ -34,10 +34,6 @@ do_cmd() {
   $cmd "$file" "$dest"
 }
 
-create_dir() {
-  do_cmd "mkdir -p" "$1" "$2"
-}
-
 create_symlink() {
   do_cmd "ln -s" "$1" "$2"
 }
@@ -56,7 +52,7 @@ create_symlink "$pwd/.tmux.conf"
 create_symlink "$pwd/.xremap.config.yaml"
 
 # ~/bin
-create_dir "$HOME/bin"
+mkdir "$HOME/bin"
 create_symlink "$pwd/sbcl" "$HOME/bin/"
 
 # os specific

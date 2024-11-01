@@ -6,7 +6,7 @@ shared:
     - Emacs
     - Code
     # wayland
-    - Code
+    - code
     - gnome-terminal-server
   # keymaps
   emacs_keymap_cursor: &emacs_keymap_cursor
@@ -84,6 +84,8 @@ modmap:
 keymap:
   - name: default
     remap: *emacs_keymap_cursor
+    application:
+      not: *excluded_apps
   - name: not for development apps (1)
     application:
       not: *excluded_apps

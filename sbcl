@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 source "$HOME/.bash_util"
 run_sbcl $@

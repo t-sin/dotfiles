@@ -55,6 +55,10 @@ create_symlink "$pwd/.xremap.config.yaml"
 mkdir "$HOME/bin"
 create_symlink "$pwd/sbcl" "$HOME/bin/"
 
+# ~/code-local
+mkdir "$HOME/code-local"
+create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
+
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then
   create_symlink "$pwd/.bash_profile.linux"

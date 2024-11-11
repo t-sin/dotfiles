@@ -1,7 +1,9 @@
 #!/bin/bash
 
+test -r "$HOME/.bash_util" && . "$HOME/.bash_util"
+
 # make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+test -x /usr/bin/lesspipe && eval "$(SHELL=/bin/sh lesspipe)"
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -28,7 +30,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-test -z "${set_default_prompt+z}" && . "$HOME/.bash_util"
 set_default_prompt
 
 if [ "$(uname -o)" = "GNU/Linux" ]; then

@@ -39,5 +39,4 @@ fi
 
 export PATH
 
-source "$HOME/.bash_util"
 test -r "$HOME/.bashrc" && source "$HOME/.bashrc"

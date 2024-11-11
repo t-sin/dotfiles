@@ -31,7 +31,6 @@ set_prompt() {
   export PS1="$ps1"
 }
 
-
 set_color_prompt() {
   color_prompt=yes set_prompt
 }

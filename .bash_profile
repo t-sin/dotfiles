@@ -17,6 +17,12 @@ PATH=$PATH:$HOME/.qlot/bin
 
 source "$HOME/.cargo/env"
 
+# Java
+
+if [ -d "$HOME/.asdf/plugins/java" ]; then
+  . ~/.asdf/plugins/java/set-java-home.bash
+fi
+
 # android studio
 
 export ANDROID_HOME=$HOME/Android/Sdk

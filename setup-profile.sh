@@ -50,6 +50,7 @@ create_symlink "$pwd/.bash_profile"
 
 create_symlink "$pwd/.tmux.conf"
 create_symlink "$pwd/.xremap.config.yaml"
+create_symlink "$pwd/.asdfrc"
 
 # ~/bin
 mkdir "$HOME/bin"

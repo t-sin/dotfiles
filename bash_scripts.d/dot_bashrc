@@ -1,6 +1,12 @@
 #!/bin/bash
 
-test -r "$HOME/.bash_util" && . "$HOME/.bash_util"
+function load_util() {
+  . "$HOME/.bash_scripts.d/$1"
+}
+
+load_util "util_basic_func.bash"
+load_util "util_prompt.bash"
+load_util "util_common_lisp.bash"
 
 # make less more friendly for non-text input files, see lesspipe(1)
 test -x /usr/bin/lesspipe && eval "$(SHELL=/bin/sh lesspipe)"
@@ -10,8 +16,13 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # enable colors for some commands
-if [ ! "$(which dircolors)" = "" ]; then
-  eval "$(dircolors -b)"
+if [ "$(uname -o)" = "GNU/Linux" ]; then
+  dircolors=dircolors
+elif [ "$(uname -o)" = "Darwin" ]; then
+  dircolors=gdircolors
+fi
+if [ ! "$(which $dircolors)" = "" ]; then
+  eval "$($(which $dircolors) -b)"
   alias ls='ls --color=auto'
   alias grep='grep --color=auto'
 fi
@@ -33,13 +44,10 @@ fi
 set_default_prompt
 
 if [ "$(uname -o)" = "GNU/Linux" ]; then
-  # asdf
-  . "$HOME/.asdf/asdf.sh"
-  . "$HOME/.asdf/completions/asdf.bash"
+  :
 elif [ "$(uname -o)" = "Darwin" ]; then
-  # homebrew
-  eval $(/opt/homebrew/bin/brew shellenv)
-  # asdf
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
-  . "$(brew --prefix asdf)/etc/bash_completion.d/asdf.bash"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# asdf
+. <(asdf completion bash)

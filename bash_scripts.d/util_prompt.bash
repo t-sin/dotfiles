@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set_prompt() {
+function set_prompt() {
   local chroot_color='\[\033[33m\]'
   local username_color='\[\033[00m\]'
   local hostname_color='\[\033[32;1m\]'
@@ -31,29 +31,11 @@ set_prompt() {
   export PS1="$ps1"
 }
 
-set_color_prompt() {
+function set_color_prompt() {
   color_prompt=yes set_prompt
 }
 
-set_default_prompt() {
+function set_default_prompt() {
   source "$HOME/.prompt-info"
   set_color_prompt
-}
-
-sbcl_home() {
-  local os="$(uname -o)"
-  if [ "$os" = "GNU/Linux" ];then
-    os=linux
-  elif [ "$os" = "Darwin" ];then
-    os=darwin
-  fi
-
-  local arch=$(uname -m | tr '_' '-')
-  local sbcl_ver=$(ros config 2>&1 | grep 'sbcl-bin.version' | cut -d '=' -f 2)
-  local sbcl_home="${HOME}/.roswell/impls/${arch}/${os}/sbcl-bin/${sbcl_ver}"
-  echo "${sbcl_home}"
-}
-
-run_sbcl() {
-  "$(sbcl_home)/bin/sbcl" $@
 }

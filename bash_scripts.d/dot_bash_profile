@@ -23,6 +23,10 @@ if [ -d "$HOME/.asdf/plugins/java" ]; then
   . ~/.asdf/plugins/java/set-java-home.bash
 fi
 
+# asdf
+
+PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # android studio
 
 export ANDROID_HOME=$HOME/Android/Sdk

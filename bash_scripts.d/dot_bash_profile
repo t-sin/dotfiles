@@ -1,28 +1,21 @@
 #!/bin/bash
 
+OPT=$HOME/opt
+
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$OPT/bin
 
-export OPT=$HOME/opt
 export EDITOR=lem
 export LC_COLLATE="en_US.UTF-8"
 export TERM=xterm-256color
 
 # Common Lisp
-
 PATH=$PATH:$HOME/.roswell/bin
 PATH=$PATH:$HOME/.qlot/bin
 
 # Rust
-
 source "$HOME/.cargo/env"
-
-# Java
-
-if [ -d "$HOME/.asdf/plugins/java" ]; then
-  . ~/.asdf/plugins/java/set-java-home.bash
-fi
-
 # asdf
 
 PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"

@@ -63,7 +63,9 @@ create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then
   create_symlink "$HOME/.bash_scripts.d/dot_bash_profile.linux" "$HOME/.bash_profile.linux"
+  create_symlink "$HOME/.bash_scripts.d/dot_bashrc.linux" "$HOME/.bashrc.linux"
 elif [ "$(uname -o)" = "Darwin" ]; then
   create_symlink "$HOME/.bash_scripts.d/dot_bash_profile.mac" "$HOME/.bash_profile.mac"
+  create_symlink "$HOME/.bash_scripts.d/dot_bashrc.mac" "$HOME/.bashrc.mac"
 fi
 

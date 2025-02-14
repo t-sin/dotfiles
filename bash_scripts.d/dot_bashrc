@@ -44,9 +44,9 @@ fi
 set_default_prompt
 
 if [ "$(uname -o)" = "GNU/Linux" ]; then
-  :
+  . ~/.bashrc.linux
 elif [ "$(uname -o)" = "Darwin" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  . ~/.bashrc.mac
 fi
 
 # asdf

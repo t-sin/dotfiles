@@ -1,4 +1,4 @@
 #!/bin/bash
 
-source "$HOME/.bash_util"
+source "$HOME/.bash_scripts.d/util_common_lisp.bash"
 run_sbcl $@

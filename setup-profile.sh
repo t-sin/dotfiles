@@ -19,12 +19,6 @@ do_cmd() {
     dest="$HOME/"
   fi
 
-  if [ -d "$dest" ]; then
-    local name="$(basename $file)"
-    dest="${dest}${name}"
-    debug "dest = $dest"
-  fi
-
   if [ -f "$dest" ]; then
     debug "delete '$dest' because it exists"
     rm "$dest"
@@ -35,11 +29,11 @@ do_cmd() {
 }
 
 create_symlink() {
-  do_cmd "ln -s" "$1" "$2"
+  do_cmd "ln -sf" "$1" "$2"
 }
 
 copy_file() {
-  do_cmd "cp" "$1" "$2"
+  do_cmd "cp -f" "$1" "$2"
 }
 
 copy_file "$pwd/.prompt-info"
@@ -52,12 +46,14 @@ create_symlink "$pwd/.tmux.conf"
 create_symlink "$pwd/.xremap.config.yaml"
 create_symlink "$pwd/.asdfrc"
 
-# ~/bin
+# basic directories
 mkdir "$HOME/bin"
-create_symlink "$pwd/sbcl" "$HOME/bin/"
-
-# ~/code-local
+mkdir "$HOME/opt"
+mkdir "$HOME/src"
+mkdir "$HOME/tmp"
 mkdir "$HOME/code-local"
+
+create_symlink "$pwd/sbcl" "$HOME/bin/"
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
 # os specific
@@ -68,4 +64,3 @@ elif [ "$(uname -o)" = "Darwin" ]; then
   create_symlink "$HOME/.bash_scripts.d/dot_bash_profile.mac" "$HOME/.bash_profile.mac"
   create_symlink "$HOME/.bash_scripts.d/dot_bashrc.mac" "$HOME/.bashrc.mac"
 fi
-

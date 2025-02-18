@@ -36,12 +36,14 @@ copy_file() {
   do_cmd "cp -f" "$1" "$2"
 }
 
+# bash profiles
 copy_file "$pwd/.prompt-info"
 create_symlink "$pwd/bash_scripts.d" "$HOME/.bash_scripts.d"
 create_symlink "$HOME/.bash_scripts.d/dot_bash_profile" "$HOME/.bash_profile"
 create_symlink "$HOME/.bash_scripts.d/dot_bashrc" "$HOME/.bashrc"
 create_symlink "$HOME/.bash_scripts.d/dot_bash_logout" "$HOME/.bash_logout"
 
+# configurations
 create_symlink "$pwd/.tmux.conf"
 create_symlink "$pwd/.xremap.config.yaml"
 create_symlink "$pwd/.asdfrc"
@@ -53,8 +55,12 @@ mkdir "$HOME/src"
 mkdir "$HOME/tmp"
 mkdir "$HOME/code-local"
 
-create_symlink "$pwd/sbcl" "$HOME/bin/"
+# commands
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
+
+# useful scripts
+create_symlink "$pwd/sbcl" "$HOME/bin/"
+create_symlink "$pwd/collect-opt-bins" "$HOME/bin"
 
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then

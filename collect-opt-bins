@@ -1,0 +1,24 @@
+#!/bin/bash
+
+home_opt_dir=$(readlink -f "$HOME/opt")
+echo_cmd_for_debug=""
+
+cd "$home_opt_dir"
+
+read -n1 -p 'dry run? (y/N)' yn
+if [ "$yn" = y ]; then
+    echo_cmd_for_debug="echo"
+    echo 'ok. print command only.'
+fi
+
+home_opt_bin="$home_opt_dir/bin"
+
+# list of paths like `~/opt/DIRNAME/current`
+find -L . \
+    -type f -path './*/current' \
+    -exec bash -c "$echo_cmd_for_debug ln -sf \$(readlink -f {}) $home_opt_bin/\$(echo {} | cut -d/ -f2)" \;
+
+# list of `~/opt/DIRNAME/current`
+find -L . \
+    -type f -path './*/current/bin/*' \
+    -exec bash -c "$echo_cmd_for_debug ln -sf \$(readlink -f {}) $home_opt_bin/\$(basename {})" \;

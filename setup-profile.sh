@@ -56,9 +56,9 @@ mkdir "$HOME/tmp"
 mkdir "$HOME/code-local"
 
 # ~/bin
-create_symlink "$pwd/sbcl" "$HOME/bin/"
-create_symlink "$pwd/collect-opt-bins" "$HOME/bin"
-create_symlink "$pwd/compose" "$HOME/bin/"
+create_symlink "$pwd/bin/sbcl" "$HOME/bin/"
+create_symlink "$pwd/bin/collect-opt-bins" "$HOME/bin"
+create_symlink "$pwd/bin/compose" "$HOME/bin/"
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
 # os specific

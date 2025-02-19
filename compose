@@ -1,0 +1,37 @@
+#!/bin/bash
+. "$HOME/.bash_scripts.d/util_basic_func.bash"
+
+docker_compose_service_names() {
+    docker compose ps --format '{{.Service}}' 2>/dev/null
+}
+
+docker_compose_down_rmi() {
+  docker compose stop "$@"
+  docker compose down --rmi local --remove-orphans --volumes "$@"
+}
+
+docker_compose_recreate() {
+    docker_compose_down_rmi "$@"
+    docker compose create --build "$@"
+    docker compose start "$@"
+    docker compose logs "$@"
+}
+
+if [ -n "$2" ] && (docker_compose_service_names | grep "^$2$" ); then
+    service="$2"
+fi
+#echo "service = $service"
+echo "$@"
+echo $(rest "$@")
+
+case "$1" in
+    "prune")
+        docker_compose_down_rmi $(rest "$@")
+        ;;
+    "recreate")
+        docker_compose_recreate $(rest "$@")
+        ;;
+    *)
+        docker compose "$@"
+        ;;
+esac

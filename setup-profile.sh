@@ -55,12 +55,11 @@ mkdir "$HOME/src"
 mkdir "$HOME/tmp"
 mkdir "$HOME/code-local"
 
-# commands
-create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
-
-# useful scripts
+# ~/bin
 create_symlink "$pwd/sbcl" "$HOME/bin/"
 create_symlink "$pwd/collect-opt-bins" "$HOME/bin"
+create_symlink "$pwd/compose" "$HOME/bin/"
+create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then

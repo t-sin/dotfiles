@@ -14,11 +14,11 @@ fi
 home_opt_bin="$home_opt_dir/bin"
 
 # list of paths like `~/opt/DIRNAME/current`
-find -L . \
+find -L . -maxdepth 3 \
     -type f -path './*/current' \
     -exec bash -c "$echo_cmd_for_debug ln -sf \$(readlink -f {}) $home_opt_bin/\$(echo {} | cut -d/ -f2)" \;
 
-# list of `~/opt/DIRNAME/current`
-find -L . \
+# list of `~/opt/DIRNAME/current/bim/*`
+find -L . -maxdepth 4 \
     -type f -path './*/current/bin/*' \
     -exec bash -c "$echo_cmd_for_debug ln -sf \$(readlink -f {}) $home_opt_bin/\$(basename {})" \;

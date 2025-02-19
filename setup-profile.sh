@@ -66,10 +66,6 @@ create_symlink "$pwd/.tmux.conf"
 create_symlink "$pwd/.xremap.config.yaml"
 create_symlink "$pwd/.asdfrc"
 
-# autostarts
-create_symlink "$pwd/autostart/uxplay.desktop" "$HOME/.config/autostart/"
-create_symlink "$pwd/autostart/xremap.desktop" "$HOME/.config/autostart/"
-
 # ~/bin
 create_symlink "$pwd/bin/sbcl" "$HOME/bin/"
 create_symlink "$pwd/bin/collect-opt-bins" "$HOME/bin/"
@@ -78,7 +74,9 @@ create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then
-  :
+  # autostarts
+  create_symlink "$pwd/autostart/uxplay.desktop" "$HOME/.config/autostart/"
+  create_symlink "$pwd/autostart/xremap.desktop" "$HOME/.config/autostart/"
 elif [ "$(uname -o)" = "Darwin" ]; then
   :
 fi

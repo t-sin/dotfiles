@@ -19,7 +19,7 @@
 #
 [Desktop Entry]
 Type=Application
-Exec=env /home/grey/bin/xremap --watch=config /home/grey/.xremap.config.yaml
+Exec=env /home/grey/opt/bin/xremap --watch=config /home/grey/.xremap.config.yaml
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true

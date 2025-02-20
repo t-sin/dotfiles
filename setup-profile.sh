@@ -72,6 +72,10 @@ create_symlink "$pwd/bin/collect-opt-bins" "$HOME/bin/"
 create_symlink "$pwd/bin/compose" "$HOME/bin/"
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
+# lem
+mkdir "$HOME/.lem"
+find "$pwd/lem" -name '*.lisp' -exec ln -sf {} "$HOME/.lem/" \;
+
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then
   # autostarts

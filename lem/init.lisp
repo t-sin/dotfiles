@@ -1,5 +1,11 @@
 (defpackage :lem.init.t-sin
-  (:use :cl :lem))
+  (:use :cl :lem)
+  (:import-from :lem/directory-mode
+                :*directory-mode-keymap*
+                :directory-mode-up-directory)
+  (:import-from :lem-lsp-mode
+                :*lsp-mode-keymap*
+                :lsp-rename))
 (in-package :lem.init.t-sin)
 
 ;; loading utilities
@@ -24,10 +30,15 @@
 
 (setf *auto-format* t)
 
+;; key bindings
+(define-key *directory-mode-keymap* "M-," 'lem/directory-mode)
+(define-key *lsp-mode-keymap* "M-R" 'lsp-rename)
+
 ;; load files
 
-;; TODO: load something
-;; (load-initfile "aaaaaaaaaaaaaaaaa")
+;; load something
+;; (load-initfile "hoge")
+;; (load-initfile "fuga")
 
 ;; finally, load a script for editor debugging or experiments
 (load-if-exists "temp")

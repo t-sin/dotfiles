@@ -39,7 +39,6 @@ copy_file() {
 # basic directories
 mkdir -p "$HOME/bin"
 mkdir -p "$HOME/opt"
-mkdir -p "$HOME/src"
 mkdir -p "$HOME/tmp"
 mkdir -p "$HOME/code-local"
 

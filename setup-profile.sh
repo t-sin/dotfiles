@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pwd=$(readlink -f $(dirname $0))
+pwd=$(readlink -z -f "$0" | xargs -0 dirname)
 
 debug() {
   if [ "$DEBUG" = "1" ]; then

@@ -37,11 +37,11 @@ copy_file() {
 }
 
 # basic directories
-mkdir "$HOME/bin"
-mkdir "$HOME/opt"
-mkdir "$HOME/src"
-mkdir "$HOME/tmp"
-mkdir "$HOME/code-local"
+mkdir -p "$HOME/bin"
+mkdir -p "$HOME/opt"
+mkdir -p "$HOME/src"
+mkdir -p "$HOME/tmp"
+mkdir -p "$HOME/code-local"
 
 # bash profiles
 copy_file "$pwd/.prompt-info"
@@ -73,7 +73,7 @@ create_symlink "$pwd/bin/compose" "$HOME/bin/"
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
 # lem
-mkdir "$HOME/.lem"
+mkdir -p "$HOME/.lem"
 find "$pwd/lem" -name '*.lisp' -exec ln -sf {} "$HOME/.lem/" \;
 
 # os specific

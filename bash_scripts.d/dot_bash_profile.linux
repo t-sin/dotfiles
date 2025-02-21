@@ -1,9 +1,4 @@
 #!/bin/bash
 
-# yabridge (VST)
-
-PATH=$PATH:$HOME/.local/share/yabridge
-
 # DaVinci Resolve
-
 PATH=$PATH:/opt/resolve/bin

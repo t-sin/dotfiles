@@ -1,0 +1,7 @@
+#!/bin/bash
+. "$HOME/.bash_scripts.d/util_basic_func.bash"
+
+current_dir=$(true-dirname "$0")
+yabridgectl_cmd="${current_dir}/../../yabridge_current/yabridgectl"
+
+"$yabridgectl_cmd" "$@"

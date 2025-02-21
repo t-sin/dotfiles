@@ -80,6 +80,12 @@ if [ "$(uname -o)" = "GNU/Linux" ]; then
   # autostarts
   create_symlink "$pwd/autostart/uxplay.desktop" "$HOME/.config/autostart/"
   create_symlink "$pwd/autostart/xremap.desktop" "$HOME/.config/autostart/"
+
+  # yabridge
+  mkdir -p "$HOME/opt/yabridge/current/bin"
+  copy_file \
+    "$pwd/opt/yabridge/current/bin/yabridgectl" \
+    "$HOME/opt/yabridge/current/bin/"
 elif [ "$(uname -o)" = "Darwin" ]; then
   :
 fi

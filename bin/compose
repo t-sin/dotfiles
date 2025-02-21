@@ -2,36 +2,43 @@
 . "$HOME/.bash_scripts.d/util_basic_func.bash"
 
 docker_compose_service_names() {
+  if which -s yq && find . -maxdepth 1 -name 'docker-compose.*' -or -name 'compose.*' > /dev/null; then
+    compose_yaml=$(find . -maxdepth 1 -name 'docker-compose.*' -or -name 'compose.*' | head -n 1)
+    test -r "$compose_yaml" && cat "$compose_yaml" | yq -r '.services | keys | .[]'
+  else
     docker compose ps --format '{{.Service}}' 2>/dev/null
+  fi
 }
 
 docker_compose_down_rmi() {
-  docker compose stop "$@"
-  docker compose down --rmi local --remove-orphans --volumes "$@"
+  docker compose stop "$service" "$@"
+  docker compose down --rmi local --remove-orphans --volumes "$service" "$@"
 }
 
 docker_compose_recreate() {
-    docker_compose_down_rmi "$@"
-    docker compose create --build "$@"
-    docker compose start "$@"
-    docker compose logs "$@"
+    docker_compose_down_rmi "$service" "$@"
+    docker compose create --build "$service" "$@"
+    docker compose start "$service" "$@"
+    docker compose logs "$service" "$@"
 }
 
-if [ -n "$2" ] && (docker_compose_service_names | grep "^$2$" ); then
-    service="$2"
+args="$@"
+service=''
+if [ -n "$1" ] && (docker_compose_service_names | fgrep "$1" ); then
+    service="$1"
+    args=$(rest "$@")
 fi
-#echo "service = $service"
-echo "$@"
-echo $(rest "$@")
+echo "service = '$service'"
+echo "args = '${args[@]@Q}'"
 
 case "$1" in
     "prune")
-        docker_compose_down_rmi $(rest "$@")
+        docker_compose_down_rmi ${args[@]@Q}
         ;;
     "recreate")
-        docker_compose_recreate $(rest "$@")
+        docker_compose_recreate ${args[@]@Q}
         ;;
     *)
-        docker compose "$@"
+        docker compose ${args[@]@Q}
         ;;
 esac

@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+$origfont = nil
+$outfile = nil
+
+def print_help
+  puts 'Usage: fontsubset ORIGFONT OUTFILE'
+end
+
+def parse_args
+  $origfont = ARGV[0]
+  $outfile = ARGV[1]
+
+  if $origfont.nil?
+    puts 'specify ORIGFONT'
+    print_help
+    exit false
+  end
+
+  if $outfile.nil?
+    puts 'specify OUTFILE'
+    print_help
+    exit false
+  end
+end
+
+def read_codepoints
+  $stdin.read.split(',').map(&:to_i)
+end
+
+def make_fontforge_script(cps)
+  <<~"SCRIPT"
+    codepoints = #{cps}
+
+    font = open("#{$origfont}")
+    font.selection.select(*codepoints)
+    font.copy()
+
+    newfont = fontforge.font()
+    newfont.selection.select(*codepoints)
+    newfont.paste()
+
+    newfont.fontname = "aaaa"
+    print("orig={}, new={}", font.fontname, newfont.fontname)
+    newfont.save("#{$outfile}")
+  SCRIPT
+end
+
+parse_args
+cps = read_codepoints
+script_str = make_fontforge_script cps
+
+cmd = "fontforge -c '#{script_str}' --lang=py"
+puts cmd
+system cmd

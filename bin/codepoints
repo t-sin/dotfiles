@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+
+OPTIONS = {
+  :input => $stdin,
+  :delimiter => nil,
+}
+
+def parse_args
+  opt = OptionParser.new do |opts|
+    opts.on('-d') { |v| OPTIONS[:delimiter] = v.chr }
+    #opts.on('-i') { |v| OPTIONS[:input] = v }
+  end
+  opt.parse!(ARGV)
+end
+
+def get_codepoints
+   chars = case OPTIONS[:delimiter]
+     when nil then
+       OPTIONS[:input].read.chop
+     end
+
+   chars.codepoints.sort.uniq
+end
+
+argv = parse_args
+cps = get_codepoints
+
+puts cps.join(',')

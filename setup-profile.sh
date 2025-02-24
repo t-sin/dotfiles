@@ -69,7 +69,7 @@ create_symlink "$pwd/.asdfrc"
 create_symlink "$pwd/bin/sbcl" "$HOME/bin/"
 create_symlink "$pwd/bin/collect-opt-bins" "$HOME/bin/"
 create_symlink "$pwd/bin/codepoints" "$HOME/bin/"
-create_symlink "$pwd/bin/subsetfont" "$HOME/bin/"
+create_symlink "$pwd/bin/fontsubset" "$HOME/bin/"
 create_symlink "$pwd/bin/compose" "$HOME/bin/"
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 

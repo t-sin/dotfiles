@@ -33,16 +33,17 @@ def make_fontforge_script(cps)
     codepoints = #{cps}
 
     font = open("#{$origfont}")
-    font.selection.select(*codepoints)
+    font.selection.select(("unicode",), *codepoints)
     font.copy()
 
     newfont = fontforge.font()
-    newfont.selection.select(*codepoints)
+    newfont.encoding = "UnicodeFull"
+    newfont.selection.select(("unicode",), *codepoints)
     newfont.paste()
 
     newfont.fontname = "aaaa"
     print("orig={}, new={}", font.fontname, newfont.fontname)
-    newfont.save("#{$outfile}")
+    newfont.generate("#{$outfile}")
   SCRIPT
 end
 

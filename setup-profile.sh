@@ -1,6 +1,19 @@
 #!/bin/sh
 
-pwd=$(readlink -z -f "$0" | xargs -0 dirname)
+get_pwd() {
+  case $(uname -o) in
+    "GNU/Linux")
+      echo $(readlink -z -f "$0" | xargs -0 dirname)
+      ;;
+    "Darwin")
+      echo $(greadlink -z -f "$0" | xargs -0 dirname)
+      ;;
+#    "Wndows")
+#    ;;
+  esac
+}
+
+pwd=$(get_pwd)
 
 debug() {
   if [ "$DEBUG" = "1" ]; then

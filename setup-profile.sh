@@ -56,8 +56,8 @@ mkdir -p "$HOME/tmp"
 mkdir -p "$HOME/code-local"
 
 # bash profiles
-copy_file "$pwd/.prompt-info"
-[ ! -e "$HOME/.bash_scripts.d" ] && create_symlink "$pwd/bash_scripts.d" "$HOME/.bash_scripts.d"
+test ! -e "$pwd/.prompt-info" && copy_file "$pwd/.prompt-info"
+test ! -e "$HOME/.bash_scripts.d" && create_symlink "$pwd/bash_scripts.d" "$HOME/.bash_scripts.d"
 create_symlink "$HOME/.bash_scripts.d/dot_bash_profile" "$HOME/.bash_profile"
 create_symlink "$HOME/.bash_scripts.d/dot_bashrc" "$HOME/.bashrc"
 create_symlink "$HOME/.bash_scripts.d/dot_bash_logout" "$HOME/.bash_logout"

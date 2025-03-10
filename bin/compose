@@ -29,7 +29,7 @@ if [ -n "$1" ] && (docker_compose_service_names | fgrep "$1" ); then
     args=$(rest "$@")
 fi
 echo "service = '$service'"
-echo "args = '${args[@]@Q}'"
+echo "args = '${args[@]}'"
 
 case "$1" in
     "prune")
@@ -39,6 +39,6 @@ case "$1" in
         docker_compose_recreate ${args[@]@Q}
         ;;
     *)
-        docker compose ${args[@]@Q}
+        docker compose ${args[@]}
         ;;
 esac

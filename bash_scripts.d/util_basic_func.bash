@@ -14,5 +14,5 @@ function first() {
 # $ rest 1 2 3 4
 # 2 3 4
 function rest() {
-  echo "${@:2:$#-1}"
+  echo "${@:2}"
 }

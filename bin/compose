@@ -12,7 +12,7 @@ set -eu -o pipefail
 
 run_docker_compose_command() {
     local cmd="docker compose $@"
-    test -n "$DEBUG" && echo '#' "$cmd" >&2
+    test -n "${DEBUG-}" && echo '#' "$cmd" >&2
     eval "$cmd"
 }
 
@@ -40,9 +40,9 @@ if [ -n "${command_table[$1]-}" ]; then
     args=${@:2}
 fi
 
-test -n "$DEBUG" && echo '#' "\$@ =>" "${@@Q}" >&2
-test -n "$DEBUG" && echo '#' "command => = '$command'" >&2
-test -n "$DEBUG" && echo '#' "args =>" ${args[@]} >&2
+test -n "${DEBUG-}" && echo '#' "\$@ =>" "${@@Q}" >&2
+test -n "${DEBUG-}" && echo '#' "command => = '$command'" >&2
+test -n "${DEBUG-}" && echo '#' "args =>" ${args[@]} >&2
 
 if [ -n "$command" ]; then
     "${command_table[$command]}" ${args[@]}

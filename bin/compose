@@ -29,8 +29,8 @@ docker_compose_recreate() {
 }
 
 declare -A command_table=(
-    ["recreate"]="docker_compose_recreate"
-    ["prune"]="docker_compose_prune"
+    [recreate]='docker_compose_recreate'
+    [prune]='docker_compose_prune'
 )
 
 command=''

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function load_util() {
   . "$HOME/.bash_scripts.d/$1"

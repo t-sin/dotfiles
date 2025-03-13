@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function sbcl_home() {
   local os="$(uname -o)"

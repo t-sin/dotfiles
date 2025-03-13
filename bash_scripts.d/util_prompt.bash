@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function set_prompt() {
   local chroot_color='\[\033[33m\]'

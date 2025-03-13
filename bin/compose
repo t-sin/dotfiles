@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eu -o pipefail
 
 #docker_compose_service_names() {

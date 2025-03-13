@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 home_opt_dir=$(readlink -f "$HOME/opt")
 echo_cmd_for_debug=""

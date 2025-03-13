@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 . "$HOME/.bash_scripts.d/util_basic_func.bash"
 
 current_dir=$(true-dirname "$0")

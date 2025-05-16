@@ -51,3 +51,7 @@ fi
 
 # asdf
 . <(asdf completion bash)
+
+# rust
+
+. "$HOME/.cargo/env"

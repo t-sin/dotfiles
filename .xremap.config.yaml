@@ -3,11 +3,13 @@ shared:
   apps: &excluded_apps
     # x11
     - Gnome-terminal
+    - Xfce4-terminal
     - Emacs
     - Code
     # wayland
     - code
     - gnome-terminal-server
+    - xfce4-terminal
   # keymaps
   emacs_keymap_cursor: &emacs_keymap_cursor
     C-b: { with_mark: left }

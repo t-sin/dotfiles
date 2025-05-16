@@ -52,6 +52,7 @@ copy_file() {
 # basic directories
 mkdir -p "$HOME/bin"
 mkdir -p "$HOME/opt"
+mkdir -p "$HOME/src"
 mkdir -p "$HOME/tmp"
 mkdir -p "$HOME/code-local"
 
@@ -92,6 +93,11 @@ find "$pwd/lem" -name '*.lisp' -exec ln -sf {} "$HOME/.lem/" \;
 
 # os specific
 if [ "$(uname -o)" = "GNU/Linux" ]; then
+  # basic dirs
+  mkdir -p "$HOME/Videos/ScreenCasts.voko"
+  ln -sf "$HOME/Pictures/スクリーンショット" "$HOME/Videos/Screenshots"
+  ln -sf "$HOME/Videos/スクリーンキャスト" "$HOME/Videos/ScreenCasts"
+
   # autostarts
   create_symlink "$pwd/autostart/uxplay.desktop" "$HOME/.config/autostart/"
   create_symlink "$pwd/autostart/xremap.desktop" "$HOME/.config/autostart/"

@@ -21,8 +21,7 @@ PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # android studio
 
-export ANDROID_HOME=$HOME/Android/Sdk
-PATH=$PATH:$ANDROID_HOME/bin
+export ANDROID_HOME=$HOME/data.ssd/_android-studio/sdk
 PATH=$PATH:$ANDROID_HOME/platform-tools
 PATH=$PATH:$ANDROID_HOME/emulator
 export ANDROID_NDK=$ANDROID_HOME/ndk/current

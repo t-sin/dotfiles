@@ -4,6 +4,7 @@ OPT=$HOME/opt
 
 PATH=$PATH:$HOME/bin
 PATH=$PATH:$HOME/.local/bin
+PATH=$PATH:$HOME/apps/bin
 PATH=$PATH:$OPT/bin
 
 export EDITOR=lem

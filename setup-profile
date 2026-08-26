@@ -107,6 +107,11 @@ if [ "$(uname -o)" = "GNU/Linux" ]; then
 #  copy_file \
 #    "$pwd/opt/yabridge/current/bin/yabridgectl" \
 #    "$HOME/opt/yabridge/current/bin/"
+# 
+
+# emacs
+mkdir -p "$HOME/opt/emacs"
+create_symlink "$pwd/opt/emacs/builder" "$HOME/opt/emacs/"
 elif [ "$(uname -o)" = "Darwin" ]; then
   :
 fi

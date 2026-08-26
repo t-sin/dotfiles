@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
 
+PATH=$PATH:$HOME/game/bin
+
 # DaVinci Resolve
 PATH=$PATH:/opt/resolve/bin

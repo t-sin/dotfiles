@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -eu -o pipefail
+
+print_usage() {
+  echo
+  echo 'usage: build-emacs SOURCE_PATH PREFIX'
+  echo
+  exit 1
+}
+
+if [ $# -ne 2 ]; then print_usage; fi
+
+source_path=$(readlink -f "$1")
+prefix=$2
+tmpdir=$(mktemp -p /tmp -d "emacs-builder-XXXX")
+prev_pwd=$PWD
+
+mkdir -p "$tmpdir"
+cp Dockerfile.build deps.list run-configure.bash "$tmpdir"
+cd "$tmpdir"
+
+cleanup() {
+  cd "$prev_pwd"
+  rm -rf "$tmpdir"
+  echo 'cleaned up.'
+}
+
+trap cleanup SIGINT
+
+# unwind-protect:
+#  rm -rf "$tmpdir"
+
+echo 'building emacs...'
+echo "  source_path = $source_path"
+echo "  prefix      = $prefix"
+echo "  tmpdir      = $tmpdir"
+echo
+
+
+if [ -d "$source_path" ]; then
+  echo '$source_path is a directory'
+  cp -r "$source_path" "$tmpdir/emacs-src"
+else
+  echo '$source_path is a file so asume it'\''s a tar ball'
+  mkdir -p "$tmpdir/emacs-src"
+  tar xf "$source_path" --directory="$tmpdir/emacs-src" --strip-components=1
+fi
+
+declare -a docker_args=(-f Dockerfile.build -t emacs-builder --build-arg "prefix=$prefix" .)
+if [ "${DOCKER_PROGRESS:-}" = yes ]; then
+  docker_args=(--progress=plain "${docker_args[@]}")
+fi
+
+echo docker build "${docker_args[@]}"
+docker build "${docker_args[@]}"
+
+CONTAINER_ID=$(docker create "emacs-builder:latest")
+docker cp "$CONTAINER_ID:${prefix}" "${prefix}"
+docker rm "$CONTAINER_ID"
+
+cleanup
+
+echo
+echo "emacs is installed at ${prefix}"
+echo

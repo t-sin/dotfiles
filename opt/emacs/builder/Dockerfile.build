@@ -1,0 +1,22 @@
+ARG prefix
+
+FROM ubuntu:26.04
+
+RUN apt update && apt upgrade -y
+
+WORKDIR /build-emacs
+
+COPY deps.list .
+RUN cat deps.list | tr '\n' ' ' | xargs apt install -y
+
+COPY deps.list ./deps.deps.list
+COPY emacs-src ./emacs-src
+COPY run-configure.bash .
+
+ARG prefix
+ENV EMACS_PREFIX=$prefix
+
+WORKDIR /build-emacs/emacs-src
+RUN /build-emacs/run-configure.bash
+RUN make -j8
+RUN make install

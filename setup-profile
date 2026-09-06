@@ -5,6 +5,9 @@ get_pwd() {
     "GNU/Linux")
       echo $(readlink -z -f "$0" | xargs -0 dirname)
       ;;
+    "FreeBSD")
+      echo $(readlink -f "$0" | xargs dirname)
+      ;;
     "Darwin")
       echo $(greadlink -z -f "$0" | xargs -0 dirname)
       ;;

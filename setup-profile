@@ -90,6 +90,10 @@ create_symlink "$pwd/bin/fontsubset" "$HOME/bin/"
 create_symlink "$pwd/bin/compose" "$HOME/bin/"
 create_symlink "$HOME/code-local/lem/lem" "$HOME/bin/"
 
+# stumpwm
+mkdir -p "$HOME/.stumpwm.d"
+create_symlink "$pwd/.stumpwm.d/init.lisp" "$HOME/.stumpwm.d/"
+
 # lem
 mkdir -p "$HOME/.lem"
 find "$pwd/lem" -name '*.lisp' -exec ln -sf {} "$HOME/.lem/" \;

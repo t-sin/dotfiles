@@ -31,13 +31,13 @@ shared:
     # Kill line
     C-k: [Shift-end, C-c, backspace, { set_mark: false }]
     # mark
-    Esc: { set_mark: false }
-    C-g: { set_mark: false }
-    C-space: { set_mark: true }
+    Esc: [Esc, { set_mark: false }]
+    C-g: [C-g, { set_mark: false }]
+    C-space: [C-space, { set_mark: true }]
 
   mode_switch_keymap: &mode_switch_keymap
-    C-S-Enter: { set_mode: Emacs }
-    C-S-A-Enter: { set_mode: Off }
+    C-S-Enter: [C-S-Enter, { set_mode: Emacs }]
+    C-S-A-Enter: [C-S-A-ENter, { set_mode: Emacs }]
 
 modmap:
   - name: basic

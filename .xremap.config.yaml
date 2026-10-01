@@ -1,7 +1,5 @@
 shared:
-  # applicatoins
-  less_mod_apps: &less_mod_apps
-    # dev tools
+  dev_apps: &dev_apps
     - Gnome-terminal
     - gnome-terminal-server
     - Xfce4-terminal
@@ -9,19 +7,12 @@ shared:
     - Emacs
     - Code
     - code
-    # graphic apps
-    - Gimp
-    - gimp
-    - Krita
-    # - blender
 
-  # keymaps
-  emacs_keymap_minimal: &emacs_keymap_minimal
+  emacs_keymap: &emacs_keymap
     C-b: { with_mark: left }
     C-f: { with_mark: right }
     C-p: { with_mark: up }
     C-n: { with_mark: down }
-  emacs_keymap_normal: &emacs_keymap_normal
     C-a: { with_mark: home }
     C-e: { with_mark: end }
     # Forward/Backward word
@@ -39,10 +30,14 @@ shared:
     C-d: [delete, { set_mark: false }]
     # Kill line
     C-k: [Shift-end, C-c, backspace, { set_mark: false }]
+    # mark
+    Esc: { set_mark: false }
+    C-g: { set_mark: false }
+    C-space: { set_mark: true }
 
-#####
-# main keymap & modmaps
-#####
+  mode_switch_keymap: &mode_switch_keymap
+    C-S-Enter: { set_mode: Emacs }
+    C-S-A-Enter: { set_mode: Off }
 
 modmap:
   - name: basic
@@ -52,10 +47,13 @@ modmap:
       #C-j: C-m
 
 keymap:
-  - name: minimal Emacs-like key bindings
-    remap: *emacs_keymap_minimal
-
   - name: Emacs-like key bindings
-    remap: *emacs_keymap_normal
+    remap: *emacs_keymap
+    mode: [Emacs]
     application:
-      not: *less_mod_apps
+      not: *dev_apps
+  - name: mode switching
+    remap: *mode_switch_keymap
+    mode: [Off, Emacs]
+
+default_mode: Emacs

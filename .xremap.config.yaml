@@ -37,7 +37,7 @@ shared:
 
   mode_switch_keymap: &mode_switch_keymap
     C-S-Enter: [C-S-Enter, { set_mode: Emacs }]
-    C-S-A-Enter: [C-S-A-ENter, { set_mode: Emacs }]
+    C-S-A-Enter: [C-S-A-Enter, { set_mode: off }]
 
 modmap:
   - name: basic

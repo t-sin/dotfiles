@@ -57,6 +57,8 @@ mkdir -p "$HOME/bin"
 mkdir -p "$HOME/opt"
 mkdir -p "$HOME/src"
 mkdir -p "$HOME/tmp"
+mkdir -p "$HOME/log"
+mkdir -p "$HOME/config"
 mkdir -p "$HOME/code-local"
 
 # bash profiles
@@ -79,7 +81,7 @@ esac
 
 # configurations
 create_symlink "$pwd/.tmux.conf"
-create_symlink "$pwd/.xremap.config.yaml"
+create_symlink "$pwd/config/xremap.config.yaml" "$HOME/config/"
 create_symlink "$pwd/.asdfrc"
 
 # ~/bin

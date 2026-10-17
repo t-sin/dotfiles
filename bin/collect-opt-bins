@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-home_opt_dir=$(readlink -f "$HOME/opt")
+home_opt_dir=$(realpath "$HOME/opt")
 echo_cmd_for_debug=""
 
 cd "$home_opt_dir"
@@ -16,9 +16,9 @@ home_opt_bin="$home_opt_dir/bin"
 echo 'collecting paths like `~/opt/DIRNAME/current.bin`'
 find -L . -maxdepth 3 \
     -type f -path './*/current.bin' \
-    -exec bash -c "$echo_cmd_for_debug ln -sf \$(readlink -f {}) $home_opt_bin/\$(echo {} | cut -d/ -f2)" \;
+    -exec bash -c "$echo_cmd_for_debug ln -sf \$(realpath {}) $home_opt_bin/\$(echo {} | cut -d/ -f2)" \;
 
 echo 'collecting paths like `~/opt/DIRNAME/current/bim/*`'
 find -L . -maxdepth 4 \
     -type f -path './*/current/bin/*' \
-    -exec bash -c "$echo_cmd_for_debug ln -sf \$(readlink -f {}) $home_opt_bin/\$(basename {})" \;
+    -exec bash -c "$echo_cmd_for_debug ln -sf \$(realpath {}) $home_opt_bin/\$(basename {})" \;

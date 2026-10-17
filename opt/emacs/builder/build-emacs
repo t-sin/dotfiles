@@ -10,7 +10,7 @@ print_usage() {
 
 if [ $# -ne 2 ]; then print_usage; fi
 
-source_path=$(readlink -f "$1")
+source_path=$(realpath "$1")
 prefix=$2
 tmpdir=$(mktemp -p /tmp -d "emacs-builder-XXXX")
 prev_pwd=$PWD

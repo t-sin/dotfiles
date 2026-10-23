@@ -78,8 +78,12 @@ esac
 
 # configurations
 create_symlink "$pwd/.tmux.conf"
-create_symlink "$pwd/config/xremap.config.yaml" "$HOME/config/"
 create_symlink "$pwd/.asdfrc"
+create_symlink "$pwd/config/dot_xprofile" "$HOME/.xprofile"
+create_symlink "$pwd/config/xremap.config.yaml" "$HOME/config/"
+
+mkdir -p "$HOME/.config/environment.d"
+create_symlink "$pwd/config/10-input-method.conf" "$HOME/.config/environment.d/"
 
 # ~/bin
 create_symlink "$pwd/bin/sbcl" "$HOME/bin/"

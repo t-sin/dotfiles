@@ -50,8 +50,8 @@ elif [ "$(uname -o)" = "Darwin" ]; then
 fi
 
 # asdf
-. <(asdf completion bash)
+command -v asdf >/dev/null && . <(asdf completion bash)
 
 # rust
+test -d "$HOME/.cargo/" && . "$HOME/.cargo/env"
 
-. "$HOME/.cargo/env"
